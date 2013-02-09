@@ -1,0 +1,11 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<string>
+
+@{
+    Layout = "cjrNancyLayout";
+ }
+
+
+    <h3>There was a problem with the data you entered: </h3>
+    <div class="cjr_module_error">
+        @Model
+    </div>

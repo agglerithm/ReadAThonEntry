@@ -1,0 +1,49 @@
+<Modules>
+  <Module PersistentId="74262CEA-9A6F-43B2-BC23-AEDE9460D718" ModuleId="TimeKeeper" />
+  <Module PersistentId="4A33FC62-E10F-4576-8CC6-16CFEF4D5DBE" ModuleId="CJR.Persistence" />
+  <Module PersistentId="d:Miscellaneous Files" ModuleId="CJR.Common" />
+  <Module PersistentId="45CB3716-F230-4283-9B61-3DB388386CB1" ModuleId="TimekeeperTests" />
+  <Module PersistentId="18A78A1C-6061-4DA2-B523-2F5573672E80" ModuleId="Cjr.Common.Testing" />
+  <Module PersistentId="CJR.Common, Version=1.0.0.0, Culture=neutral" ModuleId="CJR.Common_1" />
+  <Module PersistentId="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="mscorlib" />
+  <Module PersistentId="FluentNHibernate, Version=1.3.0.733, Culture=neutral, PublicKeyToken=8aa435e3cb308880" ModuleId="FluentNHibernate" />
+  <Module PersistentId="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4" ModuleId="Iesi.Collections" />
+  <Module PersistentId="LinFu.DynamicProxy, Version=1.0.4.18998, Culture=neutral, PublicKeyToken=62a6874124340d6e" ModuleId="LinFu.DynamicProxy" />
+  <Module PersistentId="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" ModuleId="Microsoft.Practices.ServiceLocation" />
+  <Module PersistentId="Nancy, Version=0.13.0.0, Culture=neutral" ModuleId="Nancy" />
+  <Module PersistentId="Nancy.Bootstrappers.StructureMap, Version=0.13.0.0, Culture=neutral" ModuleId="Nancy.Bootstrappers.StructureMap" />
+  <Module PersistentId="Nancy.Hosting.Aspnet, Version=0.13.0.0, Culture=neutral" ModuleId="Nancy.Hosting.Aspnet" />
+  <Module PersistentId="Nancy.Hosting.Self, Version=0.13.0.0, Culture=neutral" ModuleId="Nancy.Hosting.Self" />
+  <Module PersistentId="Nancy.ViewEngines.Razor, Version=0.13.0.0, Culture=neutral" ModuleId="Nancy.ViewEngines.Razor" />
+  <Module PersistentId="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4" ModuleId="NHibernate" />
+  <Module PersistentId="NHibernate.ByteCode.LinFu, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4" ModuleId="NHibernate.ByteCode.LinFu" />
+  <Module PersistentId="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223" ModuleId="StructureMap" />
+  <Module PersistentId="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="System" />
+  <Module PersistentId="System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" ModuleId="System.Configuration" />
+  <Module PersistentId="System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="System.Core" />
+  <Module PersistentId="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" ModuleId="System.Web.Razor" />
+  <Module PersistentId="System.Xml.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="System.Xml.Linq" />
+  <Module PersistentId="System.Data.DataSetExtensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="System.Data.DataSetExtensions" />
+  <Module PersistentId="Microsoft.CSharp, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" ModuleId="Microsoft.CSharp" />
+  <Module PersistentId="System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="System.Data" />
+  <Module PersistentId="System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="System.Xml" />
+  <Module PersistentId="Topshelf, Version=3.1.106.0, Culture=neutral, PublicKeyToken=b800c4cfcdeea87b" ModuleId="Topshelf" />
+  <Module PersistentId="AFPST.Common, Version=0.0.1.0, Culture=neutral" ModuleId="AFPST.Common" />
+  <Module PersistentId="EdiMessages, Version=0.0.1.0, Culture=neutral" ModuleId="EdiMessages" />
+  <Module PersistentId="EmailService.Messages, Version=1.0.0.91, Culture=neutral" ModuleId="EmailService.Messages" />
+  <Module PersistentId="FluentNHibernate, Version=1.2.0.712, Culture=neutral, PublicKeyToken=8aa435e3cb308880" ModuleId="FluentNHibernate_1" />
+  <Module PersistentId="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a" ModuleId="log4net" />
+  <Module PersistentId="MassTransit.NHibernateIntegration, Version=2.0.0.0, Culture=neutral" ModuleId="MassTransit.NHibernateIntegration" />
+  <Module PersistentId="MassTransit.StructureMapIntegration, Version=2.0.0.0, Culture=neutral" ModuleId="MassTransit.StructureMapIntegration" />
+  <Module PersistentId="MassTransit.Transports.Msmq, Version=2.0.0.0, Culture=neutral" ModuleId="MassTransit.Transports.Msmq" />
+  <Module PersistentId="MassTransitContrib, Version=1.0.0.0, Culture=neutral" ModuleId="MassTransitContrib" />
+  <Module PersistentId="NCommon, Version=1.0.0.0, Culture=neutral" ModuleId="NCommon" />
+  <Module PersistentId="NHibernate.JetDriver, Version=2.0.0.1001, Culture=neutral" ModuleId="NHibernate.JetDriver" />
+  <Module PersistentId="ReportingMessages, Version=1.0.0.0, Culture=neutral" ModuleId="ReportingMessages" />
+  <Module PersistentId="StructureMap, Version=2.6.2.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223" ModuleId="StructureMap_1" />
+  <Module PersistentId="Topshelf, Version=2.2.1.0, Culture=neutral" ModuleId="Topshelf_1" />
+  <Module PersistentId="Cjr.Common.Testing, Version=1.0.0.0, Culture=neutral" ModuleId="Cjr.Common.Testing_1" />
+  <Module PersistentId="Moq, Version=4.0.10827.0, Culture=neutral, PublicKeyToken=69f491c39445e920" ModuleId="Moq" />
+  <Module PersistentId="nunit.framework, Version=2.6.2.12296, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" ModuleId="nunit.framework" />
+  <Module PersistentId="JetBrains.Annotations, Version=5.0.1659.36, Culture=neutral, PublicKeyToken=1010a0d8d6380325" ModuleId="JetBrains.Annotations" />
+</Modules>

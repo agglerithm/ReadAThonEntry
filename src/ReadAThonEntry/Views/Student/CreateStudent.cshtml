@@ -1,0 +1,76 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<StudentSearchCriteria>
+@using ReadAThonEntry.ViewModels
+@{
+    Layout = "cjrNancyLayout";
+}
+ 
+@section Head{
+  
+}
+
+ <h2>Create Student Record</h2>   <hr />           
+ 
+<form id="form" action="/student/create" method="POST">
+ <h2>Student @Model.FirstName @Model.LastName from @Model.School was not found.  Please enter the student's information here.</h2>
+<div class="cjr_fieldset">
+
+      <div class="cjr_fieldset_legend">Student Information</div>
+           <div>
+        <label class="cjr_form_label" >School</label> 
+        <input type="text" name="School" value="@Model.School" />  
+      </div>    
+           <div>
+        <label class="cjr_form_label" >Student First Name</label> 
+        <input type="text" name="FirstName" value="@Model.FirstName" /> 
+      </div>      
+      <div>
+        <label class="cjr_form_label" >Student Last Name</label> 
+        <input type="text" name="LastName"  value="@Model.LastName" /> 
+      </div>     
+      <div>
+        <label class="cjr_form_label" >Teacher</label> 
+        <input type="text" name="Teacher"  />
+      </div>     
+      <div>
+        <label class="cjr_form_label" >Grade</label> 
+        <input type="text" name="Grade"   />
+      </div>     
+ 
+      <div class="cjr_fieldset_legend">Data From Envelope</div>
+      <hr />
+     <div>
+        <label class="cjr_form_label" >Envelope Number</label> 
+        <input type="text" name="EnvelopeNumber"  />
+      </div> 
+     <div>
+        <label class="cjr_form_label" >Amount From Envelope</label> 
+        <input type="text" name="AmountFromEnvelope"  />
+      </div> 
+      <div>
+        <label class="cjr_form_label">Minutes Read</label>
+        <input type="text" name="MinutesRead" />
+      </div>
+      <div>
+        <label class="cjr_form_label">Pages Read</label>
+        <input type="text" name="PagesRead"   />
+      </div>        
+      <div>
+        <label class="cjr_form_label">Shirt Size</label><br />
+        <input type="radio" name="ShirtSize" value="0">YouthSmall</input> <br />
+        <input type="radio" name="ShirtSize" value="1">YouthMedium</input> <br />
+        <input type="radio" name="ShirtSize" value="2">YouthLarge</input><br />
+        <input type="radio" name="ShirtSize" value="3">YouthXl</input><br />
+        <input type="radio" name="ShirtSize" value="4">AdultSmall</input><br />
+        <input type="radio" name="ShirtSize" value="5">AdultMedium</input><br />
+        <input type="radio" name="ShirtSize" value="6">AdultLarge</input><br />
+        <input type="radio" name="ShirtSize" value="7">AdultXl</input><br />
+      </div> 
+      <div>
+        <label class="cjr_form_label">Comments</label><br />
+        <textarea cols="30" rows="3" name="Comments"></textarea>
+      </div>           
+      </div><hr /> 
+          <div class="cjr_toolbar">
+      <input type="submit" class="cjr_button cjr_ui_priority_primary" value="Create Student" />  
+    </div>
+      </form>

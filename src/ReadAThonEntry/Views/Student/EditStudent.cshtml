@@ -1,0 +1,74 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Student>
+@using ReadAThonEntry.ViewModels
+@{
+    Layout = "cjrNancyLayout";
+}
+ 
+@section Head{
+  
+}
+
+ <h2>Edit Student</h2>   <hr />           
+
+<form id="form" action="/student/update" method="POST">
+  <div class="cjr_important">
+  <ul>
+              <li class="last"><B>School:</B> @Model.School  </li>
+              <li class="last"><b>Teacher:</b> @Model.Teacher</li>
+              <li class="last"><b>Student Name:</b> @Model.FirstName @Model.LastName</li>
+              <li class="last"><B>Grade:</B> @Model.Grade</li>
+              <li class="last"><B>Online Amount:</B> @Model.AmountFromWebsite</li>
+         </ul>   </div> 
+<input type="hidden" value="@Model.School" name="School" />
+<input type="hidden" value="@Model.Teacher" name="Teacher" />
+<input type="hidden" value="@Model.FirstName" name="FirstName" />
+<input type="hidden" value="@Model.LastName" name="LastName" />
+<input type="hidden" value="@Model.Grade" name="Grade" />
+<input type="hidden" value="@Model.Address1" name="Address1" />
+<input type="hidden" value="@Model.Address2" name="Address2" />
+<input type="hidden" value="@Model.City" name="City" />
+<input type="hidden" value="@Model.State" name="State" />
+<input type="hidden" value="@Model.Zip" name="Zip" />
+<input type="hidden" value="@Model.AmountFromWebsite" name="AmountFromWebsite" />
+<input type="hidden" value="@Model.Phone" name="Phone" /> 
+
+<div class="cjr_fieldset">
+      <div class="cjr_fieldset_legend">Data From Envelope</div>
+      <hr />
+     <div>
+        <label class="cjr_form_label" >Envelope Number</label> 
+        <input type="text" name="EnvelopeNumber" value="@Model.EnvelopeNumber"  />
+      </div> 
+     <div>
+        <label class="cjr_form_label" >Amount From Envelope $</label> 
+        <input type="text" name="AmountFromEnvelope" value="@Model.AmountFromEnvelope"  />
+      </div> 
+      <div>
+        <label class="cjr_form_label">Minutes Read</label>
+        <input type="text" name="MinutesRead" value="@Model.MinutesRead"/>
+      </div>
+      <div>
+        <label class="cjr_form_label">Pages Read</label>
+        <input type="text" name="PagesRead" value="@Model.PagesRead" />
+      </div>        
+  
+      <br />   
+        <label class="cjr_form_label">Shirt Size</label><br />
+        <input type="radio" name="ShirtSize" value="0" @Model.GetSelected(ShirtSize.YouthSmall)>YouthSmall</input> <br />
+        <input type="radio" name="ShirtSize" value="1" @Model.GetSelected(ShirtSize.YouthMedium)>YouthMedium</input> <br />
+        <input type="radio" name="ShirtSize" value="2" @Model.GetSelected(ShirtSize.YouthLarge)>YouthLarge</input><br />
+        <input type="radio" name="ShirtSize" value="3" @Model.GetSelected(ShirtSize.YouthXl)>YouthXl</input><br />
+        <input type="radio" name="ShirtSize" value="4" @Model.GetSelected(ShirtSize.AdultSmall)>AdultSmall</input><br />
+        <input type="radio" name="ShirtSize" value="5" @Model.GetSelected(ShirtSize.AdultMedium)>AdultMedium</input><br />
+        <input type="radio" name="ShirtSize" value="6" @Model.GetSelected(ShirtSize.AdultLarge)>AdultLarge</input><br />
+        <input type="radio" name="ShirtSize" value="7" @Model.GetSelected(ShirtSize.AdultXl)>AdultXl</input><br />
+      </div> 
+      <br />           
+      <div>
+        <label class="cjr_form_label">Comments</label><br />
+        <textarea cols="30" rows="3" name="Comments">@Model.Comments</textarea>
+      </div>       
+      </div><hr />                <div class="cjr_toolbar">
+      <input type="submit" class="cjr_button cjr_ui_priority_primary" value="Save Changes" />  
+    </div>
+      </form>
