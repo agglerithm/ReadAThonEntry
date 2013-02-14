@@ -94,6 +94,9 @@
     <Reference Include="Nancy.ViewEngines.Razor">
       <HintPath>..\packages\Nancy.Viewengines.Razor.0.13.0\lib\net40\Nancy.ViewEngines.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="NCommon">
+      <HintPath>..\..\lib\NCommon\NCommon.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.3.3.2.4000\lib\Net35\NHibernate.dll</HintPath>
       <Private>True</Private>
@@ -129,21 +132,15 @@
     <Compile Include="Configs\CustomRazorConfiguration.cs" />
     <Compile Include="Configs\NancyBootstrapper.cs" />
     <Compile Include="Configs\StructureMapRegistry.cs" />
-    <Compile Include="DTOs\SchoolDto.cs" />
-    <Compile Include="DTOs\StudentDto.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Helpers\ConfigurationHelper.cs" />
-    <Compile Include="Mappers\StudentDtoMapper.cs" />
-    <Compile Include="Mappers\SchoolDtoMapper.cs" />
     <Compile Include="Modules\HomeModule.cs" />
+    <Compile Include="Services\IStudentProcessingService.cs" />
     <Compile Include="Modules\StudentModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\SchoolRepository.cs" />
-    <Compile Include="Repositories\ISchoolRepository.cs" />
-    <Compile Include="Repositories\IStudentRepository.cs" />
-    <Compile Include="Repositories\StudentRepository.cs" />
     <Compile Include="Services\NancyHandlerService.cs" />
+    <Compile Include="ViewModels\StudentPrototype.cs" />
     <Compile Include="ViewModels\Schools.cs" />
     <Compile Include="ViewModels\Student.cs" />
     <Compile Include="ViewModels\StudentSearchCriteria.cs" />
@@ -156,22 +153,25 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="Views\Student\EditStudentRetry.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Views\Student\CreateStudentRetry.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Views\Student\CreateStudent.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\Student\EditStudent.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Views\Home\validationerror.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Views\Home\Success.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Views\Home\Index.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\Layouts\cjrNancyLayout.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Views\Student\NextStudent.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Views\Success.cshtml">
@@ -382,6 +382,7 @@
     <Content Include="Scripts\script.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Home\testpage.htm" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -404,6 +405,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReadAThonEntry.Core\ReadAThonEntry.Core.csproj">
+      <Project>{3DD71B27-F362-4746-9D0F-19D8FF691C33}</Project>
+      <Name>ReadAThonEntry.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

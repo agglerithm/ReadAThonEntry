@@ -1,0 +1,48 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Schools>
+@using ReadAThonEntry.ViewModels 
+@{
+    Layout = "cjrNancyLayout";
+}
+ 
+@section Head{
+  
+}
+<form id="form" action="/lookup" method="POST">
+  <div class="cjr_form"> 
+  
+      <div class="cjr_fieldset_legend">Student successfully saved; enter next student.</div>
+      <hr />
+  <table> 
+        <tr> <td><label>School</label></td>
+         <td> <select name="cmbSchool" id="School">
+          <option value = ""></option>
+@foreach (var school in @Model.EnrolledList)
+{
+          <option  Value="@school">@school</option>
+}
+        </select></td>
+        <td><input type="hidden" name="School" id="txtSchool" />
+        </td></tr>
+        <tr><td><label>Student First Name:</label></td><td>
+ 
+        <input type="text" name="FirstName" id="hdnFirst" /></td></tr>
+        <tr><td><label>Student Last Name:</label></td><td>
+        <input type="text" name="LastName" id="hdnLast" /> 
+        </td></tr>
+        </table> 
+    <div class="cjr_toolbar">
+      <input type="submit" id="findStudent" class="cjr_button cjr_ui_priority_primary" value="Find Student" />  
+    </div> 
+      </div>
+      </form>
+@section FooterScripts{
+    <script type="text/javascript">
+        $("#School").change(function () {
+            var name = $("#School").val();
+            $("#txtSchool").val(name);
+
+        });
+ 
+          </script>
+      
+    }

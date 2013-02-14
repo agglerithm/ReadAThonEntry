@@ -1,4 +1,4 @@
-﻿namespace TimeKeeper.Configs
+﻿namespace ReadAThonEntry.Configs
 {
     using System.Collections.Generic;
     using Nancy.ViewEngines.Razor;
@@ -9,7 +9,7 @@
         {
             return new[]
                        { 
-                           "TimeKeeper.Core"
+                           "ReadAThonEntry.Core"
                        };
         }
 
@@ -17,7 +17,7 @@
         {
             return new[]
                        {
-                           "TimeKeeper.Core"
+                           "ReadAThonEntry.Core"
                        };
         }
 

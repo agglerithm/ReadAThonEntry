@@ -1,10 +1,9 @@
 namespace ReadAThonEntry.Modules
 {
-    using System;
+    using Core.DTOs;
+    using Core.Repositories;
     using Nancy;
-    using Nancy.ModelBinding;
-    using DTOs;
-    using Repositories;
+    using Nancy.ModelBinding; 
     using ViewModels; 
 
     public class HomeModule : NancyModule
@@ -26,29 +25,12 @@ namespace ReadAThonEntry.Modules
                                       {
                                           request.SchoolDoesNotExist = true;
                                           return View["student/CreateStudent", request];
-                                      }
-                                      var student =
-                                          studentRepo.Find(
-                                              s =>
-                                              s.School.Name == request.School && s.FirstName == request.FirstName &&
-                                              s.LastName == request.LastName);
-                                      if(student != null)
-                                        return View["student/EditStudent", student];
-                                      return View["student/CreateStudent", request];
+                                      }   
+                                          var student = studentRepo.Find(s =>s.School == request.School && s.FirstName == request.FirstName &&
+                                                                            s.LastName == request.LastName);
+                                          return student != null ? View["student/EditStudent", student.MapToModel()] : View["student/CreateStudent", request];
                                   }; 
     }
-
-        private Student getStudent()
-        {
-            return new Student
-                       {
-                           FirstName = "Bob",
-                           LastName = "Cobb",
-                           School = "St. Mary's",
-                           Teacher = "Mr. Burns",
-                           Grade = "First"
-                       };
-        }
 
         private bool validate(StudentDto request)
         {

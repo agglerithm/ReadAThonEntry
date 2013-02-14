@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NCommon.Testing</name>
+    </assembly>
+    <members>
+        <member name="T:NCommon.Testing.Configure">
+            <summary>
+            Configures NCommon for unit tests.
+            </summary>
+        </member>
+        <member name="M:NCommon.Testing.Configure.Using(Microsoft.Practices.ServiceLocation.IServiceLocator)">
+            <summary>
+             Configures NCommon using the specified mocked <see cref="T:Microsoft.Practices.ServiceLocation.IServiceLocator"/> instance.
+            </summary>
+            <param name="mockLocator">The <see cref="T:Microsoft.Practices.ServiceLocation.IServiceLocator"/> instance.</param>
+        </member>
+        <member name="T:NCommon.Testing.FakeState">
+            <summary>
+             A fake <see cref="T:NCommon.State.IState"/> implementation.
+            </summary>
+        </member>
+        <member name="P:NCommon.Testing.FakeState.Application">
+            <summary>
+            Gets the application specific state.
+            </summary>
+        </member>
+        <member name="P:NCommon.Testing.FakeState.Session">
+            <summary>
+            Gets the session specific state.
+            </summary>
+        </member>
+        <member name="P:NCommon.Testing.FakeState.Cache">
+            <summary>
+            Gets the cache specific state.
+            </summary>
+        </member>
+        <member name="P:NCommon.Testing.FakeState.Local">
+            <summary>
+            Gets the thread local / request local specific state.
+            </summary>
+        </member>
+    </members>
+</doc>

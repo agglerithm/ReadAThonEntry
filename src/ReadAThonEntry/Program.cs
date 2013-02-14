@@ -1,12 +1,12 @@
 
 
-namespace TimeKeeper
+namespace ReadAThonEntry
 {
     using System;
     using System.Configuration;
-    using Configs;
     using Nancy.Hosting.Self;
     using Nancy.Routing;
+    using ReadAThonEntry.Configs;
     using ReadAThonEntry.Services;
     using StructureMap;
     using Topshelf;
@@ -33,8 +33,8 @@ namespace TimeKeeper
                     s.WhenStarted(nhs => nhs.Start());
                     s.WhenStopped(nhs => nhs.Stop());
                 });
-                config.SetDisplayName("CJR-ReadAThonEntry");
-                config.SetServiceName("CJR-ReadAThonEntry");
+                config.SetDisplayName("Bookspring-ReadAThonEntry");
+                config.SetServiceName("Bookspring-ReadAThonEntry");
                 config.RunAsLocalSystem();
             });
 

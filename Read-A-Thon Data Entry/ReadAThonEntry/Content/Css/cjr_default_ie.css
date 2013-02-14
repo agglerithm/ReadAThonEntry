@@ -1,0 +1,11 @@
+﻿/* ie specific conditions
+-----------------------------------------*/
+
+/*  Form overrides
+---------------------------------------------*/
+.cjr_form fieldset legend>span {position:absolute; left:0; border-style:none; color:#58585A;margin-top:-1.9em;margin-left:15px;}
+.cjr_form fieldset {position:relative;background-color: #F4F4F4;border: solid 1px #D9D9DF;padding:4em 1em 2em 1em;}
+.cjr_form input[type=text], .cjr_form input[type=password]{margin:0.1em}
+.cjr_form input[type=radio],.cjr_form input[type=checkbox]{margin:0.1em 0.3em 0.1em 0em; padding-left:0em}
+.cjr_form .cjr_form_label{padding: 0.2em 0em 0em 1em}
+.cjr_form>div, .cjr_form fieldset>div, .cjr_form .cjr_fieldset>div{margin:0.4em 0em;}

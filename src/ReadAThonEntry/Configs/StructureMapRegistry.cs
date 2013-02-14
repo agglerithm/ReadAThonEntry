@@ -1,11 +1,12 @@
-namespace TimeKeeper.Configs
+namespace ReadAThonEntry.Configs
 {
     using System.Configuration;
     using CJR.Common;
+    using CJR.Persistence.configs;
+    using Core.Configs;
     using Microsoft.Practices.ServiceLocation;
     using Nancy.ViewEngines;
     using Nancy.ViewEngines.Razor;
-    using ReadAThonEntry.Mappers;
     using StructureMap;
     using StructureMap.Configuration.DSL;
 
@@ -37,7 +38,8 @@ namespace TimeKeeper.Configs
             ObjectFactory.Initialize(x =>
                                          { 
                                              x.AddRegistry(new StructureMapRegistry());
-                                             x.AddRegistry(new CJR.Persistence.configs.CjrPersistenceRegistry(ConfigurationManager.AppSettings["TestMode"] != "0",false, "ReadAThonEntry",false));
+                                             x.AddRegistry(new  CjrPersistenceRegistry(ConfigurationManager.AppSettings["TestMode"] != "0",false, "ReadAThonEntry.Core",false));
+                                             x.AddRegistry(new ReadAThonCoreRegistry());
                                          });
             ServiceLocator.SetLocatorProvider(() => new StructureMapServiceLocator(ObjectFactory.Container));
         }

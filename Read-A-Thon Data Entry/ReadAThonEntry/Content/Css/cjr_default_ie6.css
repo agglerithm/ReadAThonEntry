@@ -1,0 +1,5 @@
+﻿/* ie 6 specific conditions
+-----------------------------------------*/
+
+#subheader h1{font-size: 18px; font-weight: bolder; color: #3D5E1A; padding: 3px 0 0 5px;}
+.cjr_module_important dd ul li{ padding-left: 1em; list-style: none; background:}

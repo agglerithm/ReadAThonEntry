@@ -1,6 +1,6 @@
-﻿namespace TimeKeeper.Configs
+﻿namespace ReadAThonEntry.Configs
 {
-    using System.Collections.Generic; 
+    using System.Collections.Generic;
     using Nancy;
     using Nancy.Bootstrappers.StructureMap;
     using Nancy.Conventions;

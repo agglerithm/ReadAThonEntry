@@ -3,13 +3,17 @@ namespace ReadAThonEntry.ViewModels
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Core.Repositories;
     using Microsoft.Practices.ServiceLocation;
-    using Repositories;
 
-    public enum ShirtSize { YouthSmall, YouthMedium, YouthLarge, YouthXl, AdultSmall, AdultMedium, AdultLarge, AdultXl }
+    public enum ShirtSize { YouthSmall, YouthMedium, YouthLarge, YouthXl, AdultSmall, AdultMedium, AdultLarge, AdultXl, None }
 
     public class Student
     {
+        public Student()
+        {
+            this.ShirtSize = ShirtSize.None;
+        }
         public string EnvelopeNumber { get; set; }
         public  string Grade { get; set; }
         public  string Teacher { get; set; }
@@ -17,17 +21,20 @@ namespace ReadAThonEntry.ViewModels
         public  string LastName { get; set; }
         public string School { get; set; }
         public  int MinutesRead { get; set; }
-        public  int PagesRead { get; set; }
+        public int PagesRead { get; set; }
+        public int ReadingGoal { get; set; }
         public   string Comments { get; set; }
         public   ShirtSize ShirtSize { get; set; }
         public   decimal AmountFromWebsite { get; set; }
-        public   decimal AmountFromEnvelope { get; set; }
+        public decimal AmountFromEnvelope { get; set; }
+        public decimal  FundraisingGoal { get; set; }
         public   string Address1 { get; set; }
         public   string Address2 { get; set; }
         public   string City { get; set; }
         public   string State { get; set; }
         public  string Zip { get; set; }
         public   string Phone { get; set; }
+        public string ValidationErrorMsgs { get; set; }
 
         public string GetSelected(ShirtSize size)
         {
