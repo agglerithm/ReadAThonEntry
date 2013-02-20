@@ -27,7 +27,7 @@ namespace ReadAThonEntry
                            MinutesRead = student.MinutesRead,
                            PagesRead = student.PagesRead,
                            School = student.School,
-                           ShirtSize = student.ShirtSize.GetEnumValue(),
+                           ShirtSize = student.ShirtSize,
                            Address1 = student.Address1,
                            Address2 = student.Address2,
                            City = student.City,
@@ -40,23 +40,23 @@ namespace ReadAThonEntry
                        };
         }
 
-        public static ShirtSize GetEnumValue(this string val)
-        {
-            if(val == "YouthSmall") return ShirtSize.YouthSmall;
-            if(val == "YouthMedium") return ShirtSize.YouthMedium;
-            if(val == "YouthLarge") return ShirtSize.YouthLarge;
-            if(val == "YouthXl") return ShirtSize.YouthXl;
-            if(val == "AdultSmall") return ShirtSize.AdultSmall;
-            if(val == "AdultMedium") return ShirtSize.AdultMedium;
-            if(val == "AdultLarge") return ShirtSize.AdultLarge;
-            if (val.IsNullOrEmpty()) return ShirtSize.None;
-            return ShirtSize.AdultXl;
-        }
-
-        public static string GetStringValue(this ShirtSize size)
-        {
-            return typeof (ShirtSize).GetEnumName(size);
-        }
+//        public static ShirtSize GetEnumValue(this string val)
+//        {
+//            if(val == "YouthSmall") return "YouthSmall;
+//            if(val == "YouthMedium") return "YouthMedium;
+//            if(val == "YouthLarge") return "YouthLarge;
+//            if(val == "YouthXl") return "YouthXl;
+//            if(val == "AdultSmall") return "AdultSmall;
+//            if(val == "AdultMedium") return "AdultMedium;
+//            if(val == "AdultLarge") return "AdultLarge;
+//            if (val.IsNullOrEmpty() && val == "None") return "None;
+//            return "AdultXl;
+//        }
+//
+//        public static string GetStringValue(this ShirtSize size)
+//        {
+//            return typeof (ShirtSize).GetEnumName(size);
+//        }
 
         public static StudentDto MapFromModel(this Student student)
         {
@@ -72,7 +72,7 @@ namespace ReadAThonEntry
                            MinutesRead = student.MinutesRead,
                            PagesRead = student.PagesRead,
                            School = student.School,
-                           ShirtSize = student.ShirtSize.GetStringValue(),
+                           ShirtSize = student.ShirtSize,
                 Address1 = student.Address1,
                 Address2 = student.Address2,
                 City = student.City,
@@ -99,7 +99,7 @@ namespace ReadAThonEntry
                 PagesRead = student.PagesRead.CastToInt(),
                 ReadingGoal = student.ReadingGoal.CastToInt(),
                 School = student.School,
-                ShirtSize = student.ShirtSize.GetStringValue(),
+                ShirtSize = student.ShirtSize,
                 Address1 = student.Address1,
                 Address2 = student.Address2,
                 City = student.City,
@@ -120,6 +120,10 @@ namespace ReadAThonEntry
             return nextMonth.AddDays(-1);
         }
  
+        public static bool StartsLike(this string source, string target)
+        {
+            return source.ToUpper().StartsWith(target.ToUpper());
+        }
         public static string ReportTime(this DateTime dte)
         {
             return dte.ToString("hh:mm tt");

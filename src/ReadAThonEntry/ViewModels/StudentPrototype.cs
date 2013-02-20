@@ -1,13 +1,8 @@
 namespace ReadAThonEntry.ViewModels
 {
-    using Core.DTOs;
-
+ 
     public class StudentPrototype
-    {
-        public StudentPrototype()
-        {
-            this.ShirtSize = ShirtSize.None;
-        }
+    { 
         public string EnvelopeNumber { get; set; }
         public string Grade { get; set; }
         public string Teacher { get; set; }
@@ -18,7 +13,7 @@ namespace ReadAThonEntry.ViewModels
         public string PagesRead { get; set; }
         public string ReadingGoal { get; set; }
         public string Comments { get; set; }
-        public ShirtSize ShirtSize { get; set; }
+        public string ShirtSize { get; set; }
         public string AmountFromWebsite { get; set; }
         public string AmountFromEnvelope { get; set; }
         public string FundraisingGoal { get; set; }
@@ -33,9 +28,9 @@ namespace ReadAThonEntry.ViewModels
         public bool CreateNewSchool
         { get; set; }
 
-        public string GetSelected(ShirtSize size)
+        public string GetSelected(string size)
         {
-            return size == ShirtSize ? "checked" : "";
+            return size == ShirtSize ? "selected" : "";
         }
     }
 }

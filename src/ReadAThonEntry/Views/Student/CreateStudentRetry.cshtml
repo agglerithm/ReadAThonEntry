@@ -37,6 +37,7 @@
         <input type="text" name="Grade" value="@Model.Grade"  />
       </div>     
     <input type="hidden" value="0" name="AmountFromWebSite" />
+    <input type="hidden" value="@Model.ShirtSize"   name="ShirtSize" id="hdnShirtSize" />  
       <div class="cjr_fieldset_legend">Data From Envelope</div>
       <hr />
      <div>
@@ -58,20 +59,18 @@
       <div>
         <label class="cjr_form_label">Pages Read</label>
         <input type="text" name="PagesRead"  id="PagesRead"  value="@Model.PagesRead"/>
-      </div>           <table>
-        <tr><td>
-        <input type="radio" name="ShirtSize" value="0" @Model.GetSelected(ShirtSize.YouthSmall)>YouthSmall</input> </td><td>
-                    <input type="radio" name="ShirtSize" value="1" @Model.GetSelected(ShirtSize.YouthMedium)>YouthMedium</input> </td></tr>
-        <tr><td>
-        <input type="radio" name="ShirtSize" value="2" @Model.GetSelected(ShirtSize.YouthLarge)>YouthLarge</input> </td><td>
-                    <input type="radio" name="ShirtSize" value="3" @Model.GetSelected(ShirtSize.YouthXl)>YouthXl</input> </td></tr>
-        <tr><td>
-        <input type="radio" name="ShirtSize" value="4" @Model.GetSelected(ShirtSize.AdultSmall)>AdultSmall</input> </td><td>
-                    <input type="radio" name="ShirtSize" value="5" @Model.GetSelected(ShirtSize.AdultMedium)>AdultMedium</input> </td></tr>
-        <tr><td>
-        <input type="radio" name="ShirtSize" value="6" @Model.GetSelected(ShirtSize.AdultLarge)>AdultLarge</input> </td><td>
-                    <input type="radio" name="ShirtSize" value="7" @Model.GetSelected(ShirtSize.AdultXl)>AdultXl</input> </td></tr>
-             </table>
+      </div>    
+         <select  id="selShirtSize">
+          <option value = "@ShirtSize.None"></option>                    
+          <option  Value="@ShirtSize.YouthSmall" @Model.GetSelected(@ShirtSize.YouthSmall)>@ShirtSize.YouthSmall</option>
+          <option  Value="@ShirtSize.YouthMedium" @Model.GetSelected(@ShirtSize.YouthMedium)>@ShirtSize.YouthMedium</option>
+          <option  Value="@ShirtSize.YouthLarge" @Model.GetSelected(@ShirtSize.YouthLarge)>@ShirtSize.YouthLarge</option>
+          <option  Value="@ShirtSize.YouthXl" @Model.GetSelected(@ShirtSize.YouthXl)>@ShirtSize.YouthXl</option>
+          <option  Value="@ShirtSize.AdultSmall" @Model.GetSelected(@ShirtSize.AdultSmall)>@ShirtSize.AdultSmall</option>
+          <option  Value="@ShirtSize.AdultMedium" @Model.GetSelected(@ShirtSize.AdultMedium)>@ShirtSize.AdultMedium</option>
+          <option  Value="@ShirtSize.AdultLarge" @Model.GetSelected(@ShirtSize.AdultLarge)>@ShirtSize.AdultLarge</option>
+          <option  Value="@ShirtSize.AdultXl" @Model.GetSelected(@ShirtSize.AdultXl)>@ShirtSize.AdultXl</option>  
+        </select>
       <div>
         <label class="cjr_form_label">Comments</label><br />
         <textarea cols="30" rows="3" name="Comments">@Model.Comments</textarea>
@@ -79,6 +78,16 @@
       </div><hr /> 
           <div class="cjr_toolbar">
       <input type="submit" class="cjr_button cjr_ui_priority_primary" value="Create Student" />  
-    </div></div>
+    </div> 
       </form>
-  
+        
+      
+      @section FooterScripts{
+    <script type="text/javascript">
+        $("#selShirtSize").change(function () {
+            var size = $("#selShirtSize").val();
+            $("#hdnShirtSize").val(size);
+
+        });
+ 
+          </script>

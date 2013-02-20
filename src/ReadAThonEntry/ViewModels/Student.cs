@@ -6,14 +6,9 @@ namespace ReadAThonEntry.ViewModels
     using Core.Repositories;
     using Microsoft.Practices.ServiceLocation;
 
-    public enum ShirtSize { YouthSmall, YouthMedium, YouthLarge, YouthXl, AdultSmall, AdultMedium, AdultLarge, AdultXl, None }
 
     public class Student
-    {
-        public Student()
-        {
-            this.ShirtSize = ShirtSize.None;
-        }
+    {   
         public string EnvelopeNumber { get; set; }
         public  string Grade { get; set; }
         public  string Teacher { get; set; }
@@ -24,7 +19,7 @@ namespace ReadAThonEntry.ViewModels
         public int PagesRead { get; set; }
         public int ReadingGoal { get; set; }
         public   string Comments { get; set; }
-        public   ShirtSize ShirtSize { get; set; }
+        public   string ShirtSize { get; set; }
         public   decimal AmountFromWebsite { get; set; }
         public decimal AmountFromEnvelope { get; set; }
         public decimal  FundraisingGoal { get; set; }
@@ -36,9 +31,9 @@ namespace ReadAThonEntry.ViewModels
         public   string Phone { get; set; }
         public string ValidationErrorMsgs { get; set; }
 
-        public string GetSelected(ShirtSize size)
+        public string GetSelected(string size)
         {
-            return size == ShirtSize ? "checked" : "";
+            return size == ShirtSize ? "selected" : ""  ;
         }
 
         public bool CreateNewSchool

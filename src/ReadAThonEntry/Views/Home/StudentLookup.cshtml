@@ -1,0 +1,33 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Students>
+@using ReadAThonEntry.ViewModels 
+@{
+    Layout = "cjrNancyLayout";
+}
+ 
+@section Head{
+  
+}
+<form id="form" action="/student/create" method="POST">
+  <div class="cjr_form"> 
+  <h3>The following students matched the search criteria for @Model.School:</h3>
+ <hr /> 
+ <ul>
+@foreach (var student in @Model.StudentList)
+{
+    <li><a href="/lookup?School=@Model.School.Replace(" ","+")&FirstName=@student.FirstName.Replace(" ", "+")&LastName=@student.LastName.Replace(" ", "+")">@student.LastName,@student.FirstName</a><br /></li>
+}
+</ul>
+<br />
+        <input type="hidden" name="School" value="@Model.School" />
+
+        <input type="hidden" name="FirstName" value="@Model.FirstNamesStartingWith" /> 
+        <input type="hidden" name="LastName"  value="@Model.LastNamesStartingWith" /> 
+ 
+    <div class="cjr_toolbar">
+<h3>If the student you're looking for is not on this list, click here to create a new student record.</h3>
+     
+      <input type="submit" id="findStudent" class="cjr_button cjr_ui_priority_primary" value="Create Student" />  
+    </div> 
+      </div>
+      </form>
+ 

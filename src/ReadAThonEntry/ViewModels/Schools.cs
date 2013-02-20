@@ -3,7 +3,7 @@ namespace ReadAThonEntry.ViewModels
     using System.Collections.Generic;
     using System.Linq;
     using Core.Repositories;
-    using Microsoft.Practices.ServiceLocation; 
+    using Microsoft.Practices.ServiceLocation;
 
     public class Schools
     {

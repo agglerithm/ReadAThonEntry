@@ -60,25 +60,23 @@
         <input type="text" name="PagesRead"  id="PagesRead" />
       </div> 
       <div>
-    <input type="hidden" value="0" name="AmountFromWebSite" />  
+    <input type="hidden" value="0" name="AmountFromWebSite" />   
+    <input type="hidden"    name="ShirtSize" id="hdnShirtSize" />  
     </div>
       <div>
     <label class="cjr_form_label">Shirt Size</label>   
     <div class="cjr_module_important"> 
-        <table>
-        <tr><td>
-        <input type="radio" name="ShirtSize" value="0"  >YouthSmall</input> </td><td>
-                    <input type="radio" name="ShirtSize" value="1"  >YouthMedium</input> </td></tr>
-        <tr><td>
-        <input type="radio" name="ShirtSize" value="2" >YouthLarge</input> </td><td>
-                    <input type="radio" name="ShirtSize" value="3" >YouthXl</input> </td></tr>
-        <tr><td>
-        <input type="radio" name="ShirtSize" value="4" >AdultSmall</input> </td><td>
-                    <input type="radio" name="ShirtSize" value="5" >AdultMedium</input> </td></tr>
-        <tr><td>
-        <input type="radio" name="ShirtSize" value="6" >AdultLarge</input> </td><td>
-                    <input type="radio" name="ShirtSize" value="7" >AdultXl</input> </td></tr>
-             </table></div> </div>
+         <select  id="selShirtSize">
+          <option value = ""></option>                    
+          <option  Value="@ShirtSize.YouthSmall">@ShirtSize.YouthSmall</option>
+          <option  Value="@ShirtSize.YouthMedium">@ShirtSize.YouthMedium</option>
+          <option  Value="@ShirtSize.YouthLarge">@ShirtSize.YouthLarge</option>
+          <option  Value="@ShirtSize.YouthXl">@ShirtSize.YouthXl</option>
+          <option  Value="@ShirtSize.AdultSmall">@ShirtSize.AdultSmall</option>
+          <option  Value="@ShirtSize.AdultMedium">@ShirtSize.AdultMedium</option>
+          <option  Value="@ShirtSize.AdultLarge">@ShirtSize.AdultLarge</option>
+          <option  Value="@ShirtSize.AdultXl">@ShirtSize.AdultXl</option>  
+        </select></div> </div>
       <div>
         <label class="cjr_form_label">Comments</label><br />
         <textarea cols="30" rows="3" name="Comments"></textarea>
@@ -86,7 +84,18 @@
       </div><hr /> 
           <div class="cjr_toolbar">
       <input type="submit" class="cjr_button cjr_ui_priority_primary" value="Create Student" />  
-    </div>
     </div> 
       </form>
+      
+      
+      @section FooterScripts{
+    <script type="text/javascript">
+        $("#selShirtSize").change(function () {
+            var size = $("#selShirtSize").val();
+            $("#hdnShirtSize").val(size);
+        });
+ 
+          </script>
+
+
   
