@@ -1,0 +1,42 @@
+﻿@model ReadAThonEntryMvc.Models.Schools 
+@{
+    Layout = "~/Views/Layouts/cjrNancyLayout.cshtml";
+}
+ 
+@section Head{
+  
+}
+@using (Html.BeginForm("lookup","Home",FormMethod.Post))
+{
+  <div class="cjr_form"> 
+      <table>
+          
+          <tr> <td><label>School</label></td>
+              <td> @Html.DropDownListFor(m => m.SelectedSchool, 
+              new SelectList(Model.EnrolledList,"SchoolId","School","<Select a school>")) 
+                </td>
+              <td> 
+              </td></tr>
+          <tr><td><label>Student First Name:</label></td><td>
+ 
+                                                             <input type="text" name="firstName" id="hdnFirst" /></td></tr>
+          <tr><td><label>Student Last Name:</label></td><td>
+                                                            <input type="text" name="lastName" id="hdnLast" /> 
+                                                        </td></tr>
+      </table> 
+    <div class="cjr_toolbar">
+      <input type="submit" id="findStudent" class="cjr_button cjr_ui_priority_primary" value="Find Student" />  
+    </div> 
+      </div>
+      }
+@section FooterScripts{
+    <script type="text/javascript">
+        $("#School").change(function () {
+            var name = $("#School").val();
+            $("#txtSchool").val(name);
+
+        });
+ 
+          </script>
+      
+    }

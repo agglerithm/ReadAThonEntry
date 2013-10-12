@@ -75,7 +75,13 @@ namespace ReadAThonEntry.Services
         {
             if (!validate(request))
                 return false;
-            _studentRepo.Update(request.MapFromPrototype());
+            _studentRepo.WithinUpdateContext(() =>
+                {
+                    var entity = _studentRepo.Find(e => e.FirstName == request.FirstName
+                                                        && e.LastName == request.LastName
+                                                        && e.Address1 == request.Address1);
+                    request.MergeWithPrototype(entity);
+                });
             return true;
         }
     }

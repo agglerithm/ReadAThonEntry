@@ -1,5 +1,11 @@
 ﻿
 
+using System.Configuration;
+using CJR.Persistence.configs;
+using NHibernate.Context;
+using NHibernate.Linq;
+using ReadAThonEntry.Core.DTOs;
+
 namespace ReadAThonEntryTests
 {
     using CJR.Persistence;
@@ -8,10 +14,14 @@ namespace ReadAThonEntryTests
     [TestFixture]
     public class NHibernateJetConnectionTester
     {
+        private CjrSessionSource<StudentDto, ThreadStaticSessionContext> _src;
+
         [TestFixtureSetUp]
         public void SetUpForAllTests()
         {
-
+   _src = new CjrSessionSource<StudentDto, 
+                ThreadStaticSessionContext>("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=bin\\entries.mdb", false);
+           
         }
         [SetUp]
         public void SetUpForEachTest()
@@ -22,8 +32,8 @@ namespace ReadAThonEntryTests
         [Test]
         public void can_connect()
         {
-            var src = new CjrSessionSource ("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=entries.mdb", "ReadAThonEntry", true, false);
-
+          var sess = _src.SessionFactory.OpenSession();
+            sess.Query<StudentDto>();
         }
         
  

@@ -1,31 +1,41 @@
+using System.Linq;
+using CJR.Persistence;
+using NHibernate.Linq;
+
 namespace ReadAThonEntry.Core.Repositories
 {
     using System;
     using System.Collections.Generic;
     using System.Linq.Expressions;
-    using CJR.Persistence.imports;
     using ReadAThonEntry.Core.DTOs;
-    using FluentNHibernate;
 
-    public class SchoolRepository : Repository, ISchoolRepository 
+    public class SchoolRepository :  ISchoolRepository 
     {
-        public SchoolRepository(ISessionSource source) : base(source)
+        private readonly ISessionWrapper _session;
+
+        public SchoolRepository(ISessionWrapper session)
         {
+            _session = session;
+        }
+
+        public IEnumerable<SchoolDto> GetAll()
+        {
+            return _session.Query<SchoolDto>();
         }
 
         public IEnumerable<SchoolDto> Query(Expression<Func<SchoolDto, bool>> where)
         {
-            return base.Query<SchoolDto>(where);
+            return _session.Query<SchoolDto>().Where(where);
         }
 
         public SchoolDto Find(Expression<Func<SchoolDto, bool>> where)
         {
-            return base.FindBy<SchoolDto>(where);
+            return _session.Query<SchoolDto>().FirstOrDefault<SchoolDto>(where);
         }
 
         public void Save(SchoolDto school)
         {
-            base.Save(school);
+            _session.Save(school);
         }
     }
 

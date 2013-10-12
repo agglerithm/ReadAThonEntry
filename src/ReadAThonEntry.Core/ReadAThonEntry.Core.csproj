@@ -34,9 +34,6 @@
     <Reference Include="CJR.Common">
       <HintPath>..\..\lib\CJR.Common.dll</HintPath>
     </Reference>
-    <Reference Include="CJR.Persistence">
-      <HintPath>..\..\lib\CJR.Persistence.dll</HintPath>
-    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -82,7 +79,12 @@
     <Compile Include="Repositories\StudentErrorRepository.cs" />
     <Compile Include="Repositories\StudentRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CJR.Persistence\CJR.Persistence.csproj">
+      <Project>{4A33FC62-E10F-4576-8CC6-16CFEF4D5DBE}</Project>
+      <Name>CJR.Persistence</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

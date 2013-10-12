@@ -7,6 +7,8 @@ namespace ReadAThonEntry.Core.Repositories
 
     public interface ISchoolRepository
     {
+        IEnumerable<SchoolDto> GetAll();
+        
         IEnumerable<SchoolDto> Query(Expression<Func<SchoolDto, bool>> where);
 
         SchoolDto Find(Expression<Func<SchoolDto, bool>> where);

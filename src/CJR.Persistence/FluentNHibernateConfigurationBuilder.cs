@@ -1,3 +1,5 @@
+using NHibernate.Context;
+
 namespace CJR.Persistence
 {
     using System.Reflection;
@@ -8,13 +10,12 @@ namespace CJR.Persistence
     public static class FluentNHibernateConfigurationBuilder  
     {
 
-        public static FluentConfiguration GetFluentNHibernateConfiguration(string connectionKey, string assembly, bool createNewTables)
+        public static FluentConfiguration GetFluentNHibernateConfiguration<T>(string connectionKey,  bool createNewTables)
         { 
                 return Fluently.Configure()
                      .Database(MsSqlConfiguration
                      .MsSql2005.ConnectionString(c => c.FromAppSetting(connectionKey)))
-                     .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.Load(assembly)))
-                     .ProxyFactoryFactory("NHibernate.ByteCode.LinFu.ProxyFactoryFactory, NHibernate.ByteCode.Linfu")
+                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<T>() )
                                     .ExposeConfiguration(cfg => { 
                      if (createNewTables == false) return;
                                                                       new SchemaExport(cfg).Create(true, true); 
@@ -25,13 +26,13 @@ namespace CJR.Persistence
 
         }
 
-        public static FluentConfiguration GetFluentNHibernateJetConfiguration<T>(string dbPath,  bool createNewTables)
+        public static FluentConfiguration GetFluentNHibernateJetConfiguration<T,TSessionContext>(string dbPath,  bool createNewTables) where TSessionContext : ICurrentSessionContext
         { 
             return Fluently.Configure()
                 .Database(JetDriverConfiguration
                 .Standard.ConnectionString(dbPath))
                      .Mappings(m => m.FluentMappings.AddFromAssemblyOf<T>())
-                .ProxyFactoryFactory("NHibernate.ByteCode.LinFu.ProxyFactoryFactory, NHibernate.ByteCode.Linfu")
+                     .CurrentSessionContext<TSessionContext>()
                 .Diagnostics(x => x.Enable(true))
                                     .ExposeConfiguration(cfg =>
                                     {

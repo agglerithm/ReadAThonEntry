@@ -1,46 +1,43 @@
+using CJR.Persistence;
+using NHibernate.Linq;
+
 namespace ReadAThonEntry.Core.Repositories
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
-    using CJR.Persistence.imports;
     using DTOs;
-    using FluentNHibernate;
-    using NHibernate;
 
-    public class StudentRepository : Repository, IStudentRepository 
+    public class StudentRepository :  IStudentRepository 
     {
-        public StudentRepository(ISessionSource source) : base(source)
-        {
+        private readonly ISessionWrapper _session;
 
+        public StudentRepository(ISessionWrapper wrapper)
+        {
+            _session = wrapper;
         }
 
-        protected StudentRepository(ISession session) : base(session)
-        {
-        }
-
+ 
         public IEnumerable<StudentDto> Query(Expression<Func<StudentDto, bool>> where)
         {
-            return base.Query(where);
+            return _session.Query<StudentDto>().Where(where);
         }
 
         public StudentDto Find(Expression<Func<StudentDto, bool>> where)
         {
-            var lst = Query(where);
-            if (lst.Count() > 0)
-                return lst.First();
-            return null;
+            return Query(where).FirstOrDefault();
         }
 
         public void Save(StudentDto student)
         {
-            base.Save(student);
+            _session.Save(student);
+            _session.Flush();
         }
 
-        public void Update(StudentDto student)
-        { 
-            base.Update<StudentDto>(student, s => s.FirstName == student.FirstName && s.LastName == student.LastName && s.School == student.School);
+        public void WithinUpdateContext(Action action)
+        {
+            _session.WithinUpdateContext(action); 
         }
     }
 } 

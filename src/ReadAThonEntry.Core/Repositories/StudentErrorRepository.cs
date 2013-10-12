@@ -1,3 +1,6 @@
+using CJR.Persistence;
+using NHibernate.Linq;
+
 namespace ReadAThonEntry.Core.Repositories
 {
     using System;
@@ -9,30 +12,29 @@ namespace ReadAThonEntry.Core.Repositories
     using FluentNHibernate;
     using NHibernate;
 
-    public class StudentErrorRepository : Repository, IStudentErrorRepository 
+    public class StudentErrorRepository :  IStudentErrorRepository 
     {
-        public StudentErrorRepository(ISessionSource source) : base(source)
+        private readonly ISessionWrapper _session;
+
+        public StudentErrorRepository(ISessionWrapper session)
         {
+            _session = session;
         }
 
-        protected StudentErrorRepository(ISession session) : base(session)
-        {
-        }
 
         public IEnumerable<StudentErrorDto> Query(Expression<Func<StudentErrorDto, bool>> where)
         {
-            return base.Query(where);
+            return _session.Query<StudentErrorDto>().Where(where);
         }
 
         public StudentErrorDto Find(Expression<Func<StudentErrorDto, bool>> where)
         {
-            var lst = Query(where);
-            return lst.Count() > 0 ? lst.First() : null;
+            return _session.Query<StudentErrorDto>().FirstOrDefault(where); 
         }
 
         public void Save(StudentErrorDto student)
         {
-            base.Save(student);
+            _session.Save(student);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace ReadAThonEntry.Core.Repositories
         StudentDto Find(Expression<Func<StudentDto, bool>> where);
 
         void Save(StudentDto student);
-
-        void Update(StudentDto student);
+         
+        void WithinUpdateContext(Action action);
     }
 }

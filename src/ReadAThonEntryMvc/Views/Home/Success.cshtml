@@ -1,0 +1,34 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<TimeBlock>
+@using ReadAThonEntry.ViewModels
+@{
+    Layout = "cjrNancyLayout";
+}
+ 
+@section Head{
+  
+}
+
+<h2>Time Entered</h2>
+  <table><tr>
+        <td><label>Time In:</label></td>  <td>@Model.StartTime</td></tr>
+       <tr> <td><label>Time Out:</label></td>  <td>@Model.EndTime </td></tr>
+       <tr> <td><label>Hours</label></td>
+         <td>@Model.Hours()</td></tr>
+        <tr> <td><label>Dept.</label></td>
+         <td>@Model.Department</td></tr>
+        </table> 
+ 
+      </div>
+      </form>
+@section FooterScripts{
+    <script type="text/javascript">
+        $('#StartTime').datetimepicker({ controlType: 'select',
+
+            timeFormat: "h:mm TT"
+        });
+        $('#EndTime').datetimepicker({ controlType: 'select',
+
+            timeFormat: "h:mm TT"
+        });   </script>
+      
+    }

@@ -83,6 +83,29 @@ namespace ReadAThonEntry
             };
         }
 
+        public static StudentDto MergeWithPrototype(this StudentPrototype student, StudentDto dto)
+        {
+            dto.AmountFromEnvelope = student.AmountFromEnvelope.CastToDecimal();
+            dto.AmountFromWebsite = student.AmountFromWebsite.CastToDecimal();
+            dto.FundraisingGoal = student.FundraisingGoal.CastToDecimal();
+            dto.EnvelopeNumber = student.EnvelopeNumber;
+            dto.FirstName = student.FirstName;
+            dto.LastName = student.LastName;
+                dto.Grade = student.Grade;
+            dto.MinutesRead = student.MinutesRead.CastToInt();
+            dto.PagesRead = student.PagesRead.CastToInt();
+            dto.ReadingGoal = student.ReadingGoal.CastToInt();
+            dto.School = student.School;
+            dto.ShirtSize = student.ShirtSize;
+            dto.Address1 = student.Address1;
+            dto.Address2 = student.Address2;
+            dto.City = student.City;
+            dto.State = student.State;
+            dto.Zip = student.Zip;
+            dto.Phone = student.Phone;
+            dto.Teacher = student.Teacher;
+            return dto;
+        }
         public static StudentDto MapFromPrototype(this StudentPrototype student)
         {
             return new StudentDto()

@@ -1,0 +1,93 @@
+﻿@model StudentPrototype
+
+@using ReadAThonEntryMvc.Models
+@{
+    Layout = "~/Views/Layouts/cjrNancyLayout.cshtml";
+}
+ 
+@section Head{
+  
+}
+
+ <h2>Edit Student</h2>   <hr />           
+
+@using (Html.BeginForm("EditStudent", "Student"))
+{
+<div class="cjr_form">
+<h3 class="cjr_module_error">@Model.ValidationErrorMsgs</h3>
+      <div class="cjr_fieldset_legend">Student Information</div><br />
+  <div class="cjr_important"><br />
+  <ul>
+              <li class="last"><B>School:</B> @Model.School  </li>
+              <li class="last"><b>Teacher:</b> @Model.Teacher</li>
+              <li class="last"><b>Student Name:</b> @Model.FirstName @Model.LastName</li>
+              <li class="last"><B>Grade:</B> @Model.Grade</li>
+              <li class="last"><B>Online Amount:</B> @Model.AmountFromWebsite</li>
+         </ul>   </div> 
+<input type="hidden" value="@Model.School" name="School" />
+<input type="hidden" value="@Model.Teacher" name="Teacher" />
+<input type="hidden" value="@Model.FirstName" name="FirstName" />
+<input type="hidden" value="@Model.LastName" name="LastName" />
+<input type="hidden" value="@Model.Grade" name="Grade" />
+<input type="hidden" value="@Model.Address1" name="Address1" />
+<input type="hidden" value="@Model.Address2" name="Address2" />
+<input type="hidden" value="@Model.City" name="City" />
+<input type="hidden" value="@Model.State" name="State" />
+<input type="hidden" value="@Model.Zip" name="Zip" />
+<input type="hidden" value="@Model.AmountFromWebsite" name="AmountFromWebsite" />
+    <input type="hidden" value="@Model.ShirtSize"   name="ShirtSize" id="hdnShirtSize" />  
+<input type="hidden" value="@Model.Phone" name="Phone" /> 
+
+<div class="cjr_fieldset">
+      <div class="cjr_fieldset_legend">Data From Envelope</div>
+      <hr />
+     <div>
+        <label class="cjr_form_label" >Envelope Number</label> 
+        <input type="text" name="EnvelopeNumber" value="@Model.EnvelopeNumber"  />
+      </div> 
+     <div>
+        <label class="cjr_form_label" >Amount From Envelope $</label> 
+        <input type="text" name="AmountFromEnvelope" value="@Model.AmountFromEnvelope"  />
+      </div> 
+      <div>
+        <label class="cjr_form_label">Reading Goal</label>
+        <input type="text" name="ReadingGoal" id="ReadingGoal" value="@Model.ReadingGoal" />
+      </div>
+      <div>
+        <label class="cjr_form_label">Minutes Read</label>
+        <input type="text" name="MinutesRead" value="@Model.MinutesRead"/>
+      </div>
+      <div>
+        <label class="cjr_form_label">Pages Read</label>
+        <input type="text" name="PagesRead" value="@Model.PagesRead" />
+      </div>        
+       
+         <select  id="selShirtSize">
+          <option value = "@ShirtSize.None"></option>                    
+          <option  Value="@ShirtSize.YouthSmall" @Model.GetSelected(@ShirtSize.YouthSmall)>@ShirtSize.YouthSmall</option>
+          <option  Value="@ShirtSize.YouthMedium" @Model.GetSelected(@ShirtSize.YouthMedium)>@ShirtSize.YouthMedium</option>
+          <option  Value="@ShirtSize.YouthLarge" @Model.GetSelected(@ShirtSize.YouthLarge)>@ShirtSize.YouthLarge</option>
+          <option  Value="@ShirtSize.YouthXl" @Model.GetSelected(@ShirtSize.YouthXl)>@ShirtSize.YouthXl</option>
+          <option  Value="@ShirtSize.AdultSmall" @Model.GetSelected(@ShirtSize.AdultSmall)>@ShirtSize.AdultSmall</option>
+          <option  Value="@ShirtSize.AdultMedium" @Model.GetSelected(@ShirtSize.AdultMedium)>@ShirtSize.AdultMedium</option>
+          <option  Value="@ShirtSize.AdultLarge" @Model.GetSelected(@ShirtSize.AdultLarge)>@ShirtSize.AdultLarge</option>
+          <option  Value="@ShirtSize.AdultXl" @Model.GetSelected(@ShirtSize.AdultXl)>@ShirtSize.AdultXl</option>  
+        </select>
+      <br />           
+      <div>
+        <label class="cjr_form_label">Comments</label><br />
+        <textarea cols="30" rows="3" name="Comments">@Model.Comments</textarea>
+      </div>       
+      </div><hr />                <div class="cjr_toolbar">
+      <input type="submit" class="cjr_button cjr_ui_priority_primary" value="Save Changes" />  
+    </div> </div>
+   }
+      @section FooterScripts{
+    <script type="text/javascript">
+        $("#selShirtSize").change(function () {
+            var size = $("#selShirtSize").val();
+            $("#hdnShirtSize").val(size);
+
+        });
+ 
+          </script>
