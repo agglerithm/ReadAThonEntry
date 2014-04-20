@@ -1,3 +1,7 @@
+using CJR.Persistence;
+using NHibernate.Context;
+using ReadAThonEntry.Core.DTOs;
+
 namespace PullReadAThonData.Configs
 {
     using System.Configuration;
@@ -26,12 +30,16 @@ namespace PullReadAThonData.Configs
     {
         public static void Execute()
         {
+
+            var reg = new CjrPersistenceRegistry<StudentDto, ThreadStaticSessionContext>(
+                ConfigurationManager.AppSettings["TestMode"] != "0", false, "ReadAThonEntry.Core");
             ObjectFactory.Initialize(x =>
                                          { 
                                              x.AddRegistry(new StructureMapRegistry());
-                                             x.AddRegistry(new  CjrPersistenceRegistry(ConfigurationManager.AppSettings["TestMode"] != "0",false, "ReadAThonEntry.Core",false)); 
-                                             x.AddRegistry(new CjrHttpRegistry());
+                                              x.AddRegistry(new CjrHttpRegistry());
+                                             x.AddRegistry(reg);
                                              x.AddRegistry(new ReadAThonCoreRegistry());
+                                             x.For<ISessionWrapper>().HybridHttpOrThreadLocalScoped().Use<CjrSessionWrapper>();
                                          });
             ServiceLocator.SetLocatorProvider(() => new StructureMapServiceLocator(ObjectFactory.Container));
         }

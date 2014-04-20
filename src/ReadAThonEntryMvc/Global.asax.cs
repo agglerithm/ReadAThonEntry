@@ -1,5 +1,8 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using CJR.Persistence;
+using Microsoft.Practices.ServiceLocation;
+using ReadAThonEntryMvc.Modules;
 
 namespace ReadAThonEntryMvc
 {
@@ -8,9 +11,11 @@ namespace ReadAThonEntryMvc
 
     public class MvcApplication : System.Web.HttpApplication
     {
+ 
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            
         }
 
         public static void RegisterRoutes(RouteCollection routes)
@@ -30,7 +35,7 @@ namespace ReadAThonEntryMvc
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);
-            RegisterRoutes(RouteTable.Routes); 
+            RegisterRoutes(RouteTable.Routes);  
         }
          
     }

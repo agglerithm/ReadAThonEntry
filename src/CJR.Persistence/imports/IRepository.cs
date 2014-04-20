@@ -1,11 +1,12 @@
+using CJR.Common;
+using CJR.Common.Extensions;
+
 namespace CJR.Persistence.imports
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Linq.Expressions;
-    using AFPST.Common.Extensions;
-    using AFPST.Common.Services.Logging;
+    using System.Linq.Expressions; 
     using FluentNHibernate;
     using FluentNHibernate.Data;
     using NHibernate.Criterion;

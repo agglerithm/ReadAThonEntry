@@ -1,8 +1,9 @@
-﻿namespace CJR.Persistence
+﻿using CJR.Common.Extensions;
+
+namespace CJR.Persistence
 {
     using System.Reflection;
-    using FluentNHibernate.Data;
-    using NCommon.Extensions;
+    using FluentNHibernate.Data; 
 
     public static class EntityExtensions
     {

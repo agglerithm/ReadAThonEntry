@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using CJR.Persistence;
 using FluentNHibernate;
+using NHibernate.Linq;
+using ReadAThonEntry.Core.DTOs;
 using ReadAThonEntry.Core.Repositories;
 
 namespace ReadAThonEntryMvc.Models
@@ -27,13 +30,12 @@ namespace ReadAThonEntryMvc.Models
 
         private  IEnumerable<StudentSearchCriteria> GetAll()
         {
-            var sess = DependencyResolver.Current.GetService<ISessionSource>();
-            var repo =  DependencyResolver.Current.GetService<ISchoolRepository>();
-            return repo.Query(s => s.Name == s.Name)
+            var sess = DependencyResolver.Current.GetService<ISessionWrapper>(); 
+            return sess.Query<SchoolDto>()
                 .OrderBy(s => s.Name)
-                .Select(s => new StudentSearchCriteria(){School = s.Name, SchoolId = s.Id});
+                .Select(s => new StudentSearchCriteria(){School = s.MapToModel(true)});
         }
 
-        public int SelectedSchool { get; set; }
+        public long SelectedSchoolId { get; set; }
     }
 }

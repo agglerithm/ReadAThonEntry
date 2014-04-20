@@ -10,12 +10,13 @@ namespace CJR.Persistence
     public static class FluentNHibernateConfigurationBuilder  
     {
 
-        public static FluentConfiguration GetFluentNHibernateConfiguration<T>(string connectionKey,  bool createNewTables)
+        public static FluentConfiguration GetFluentNHibernateConfiguration<T,TSessionContext>(string connectionKey,  bool createNewTables) where TSessionContext : ICurrentSessionContext
         { 
                 return Fluently.Configure()
                      .Database(MsSqlConfiguration
-                     .MsSql2005.ConnectionString(c => c.FromAppSetting(connectionKey)))
-                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<T>() )
+                     .MsSql2008.ConnectionString(c => c.FromConnectionStringWithKey(connectionKey)))
+                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<T>())
+                     .CurrentSessionContext<TSessionContext>()
                                     .ExposeConfiguration(cfg => { 
                      if (createNewTables == false) return;
                                                                       new SchemaExport(cfg).Create(true, true); 

@@ -1,11 +1,12 @@
+using CJR.Common.Extensions;
+
 namespace CJR.Persistence.imports
 {
     using System;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
-    using FluentNHibernate.Data;
-    using NCommon.Extensions;
+    using FluentNHibernate.Data; 
 
     public interface IUniqueKeyExpressionBuilder
     {

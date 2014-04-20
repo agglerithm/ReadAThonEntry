@@ -1,4 +1,4 @@
-﻿@model StudentSearchCriteria
+﻿@model StudentPrototype
 
 @using ReadAThonEntryMvc.Models
 @{
@@ -9,84 +9,85 @@
 }
 
  <h2>Create Student Record</h2>   <hr />           
- 
-<form id="form" class="cjr_form" action="/student/create" method="POST">
+  
+ @using (Html.BeginForm("CreateStudent", "Student"))
+ {
+     <div class="cjr_module">
+         <h2 class="cjr_module_error">@Model.ValidationErrorMsgs</h2>
+         <div class="cjr_fieldset">
 
-<div class="cjr_module">
- <h2>Student @Model.FirstName @Model.LastName from @Model.School was not found.  Please enter the student's information here.</h2>
-<div class="cjr_fieldset">
-
-      <div class="cjr_fieldset_legend">Student Information</div>
-           <div>
-        <label class="cjr_form_label" >School</label> 
-        <input type="text" name="School" value="@Model.School" />  
-      </div>    
-           <div>
-        <label class="cjr_form_label" >Student First Name</label> 
-        <input type="text" name="FirstName" value="@Model.FirstName" /> 
-      </div>      
-      <div>
-        <label class="cjr_form_label" >Student Last Name</label> 
-        <input type="text" name="LastName"  value="@Model.LastName" /> 
-      </div>     
-      <div>
-        <label class="cjr_form_label" >Teacher</label> 
-        <input type="text" name="Teacher"  />
-      </div>     
-      <div>
-        <label class="cjr_form_label" >Grade</label> 
-        <input type="text" name="Grade"   />
-      </div>     
+             <div class="cjr_fieldset_legend">Student Information</div>
+             <div>
+                 <label class="cjr_form_label" >School</label> 
+                 <input type="text"   value="@Model.SchoolName" />  
+             </div>    
+             <div>
+                 <label class="cjr_form_label" >Student First Name</label> 
+                 <input type="text" name="FirstName" value="@Model.FirstName" /> 
+             </div>      
+             <div>
+                 <label class="cjr_form_label" >Student Last Name</label> 
+                 <input type="text" name="LastName"  value="@Model.LastName" /> 
+             </div>     
+             <div>
+                 <label class="cjr_form_label" >Teacher</label> 
+                 @Html.DropDownListFor(m => m.Teacher, Model.GetTeachers())
+             </div>     
+             <div>
+                 <label class="cjr_form_label" >Grade</label> 
+                 <input type="text" name="Grade"   />
+             </div>     
  
-      <div class="cjr_fieldset_legend">Data From Envelope</div>
-      <hr />
-     <div>
-        <label class="cjr_form_label" >Envelope Number</label> 
-        <input type="text" name="EnvelopeNumber"  />
-      </div> 
-     <div>
-        <label class="cjr_form_label" >Amount From Envelope $</label> 
-        <input type="text" name="AmountFromEnvelope" id="AmountFromEnvelope" />
-      </div> 
-      <div>
-        <label class="cjr_form_label">Reading Goal</label>
-        <input type="text" name="ReadingGoal" id="ReadingGoal" />
-      </div>
-      <div>
-        <label class="cjr_form_label">Minutes Read</label>
-        <input type="text" name="MinutesRead" id="MinutesRead" />
-      </div>
-      <div>
-        <label class="cjr_form_label">Pages Read</label>
-        <input type="text" name="PagesRead"  id="PagesRead" />
-      </div> 
-      <div>
-    <input type="hidden" value="0" name="AmountFromWebSite" />   
-    <input type="hidden"    name="ShirtSize" id="hdnShirtSize" />  
-    </div>
-      <div>
-    <label class="cjr_form_label">Shirt Size</label>   
-    <div class="cjr_module_important"> 
-         <select  id="selShirtSize">
-          <option value = ""></option>                    
-          <option  Value="@ShirtSize.YouthSmall">@ShirtSize.YouthSmall</option>
-          <option  Value="@ShirtSize.YouthMedium">@ShirtSize.YouthMedium</option>
-          <option  Value="@ShirtSize.YouthLarge">@ShirtSize.YouthLarge</option>
-          <option  Value="@ShirtSize.YouthXl">@ShirtSize.YouthXl</option>
-          <option  Value="@ShirtSize.AdultSmall">@ShirtSize.AdultSmall</option>
-          <option  Value="@ShirtSize.AdultMedium">@ShirtSize.AdultMedium</option>
-          <option  Value="@ShirtSize.AdultLarge">@ShirtSize.AdultLarge</option>
-          <option  Value="@ShirtSize.AdultXl">@ShirtSize.AdultXl</option>  
-        </select></div> </div>
-      <div>
-        <label class="cjr_form_label">Comments</label><br />
-        <textarea cols="30" rows="3" name="Comments"></textarea>
-      </div>           
-      </div><hr /> 
-          <div class="cjr_toolbar">
-      <input type="submit" class="cjr_button cjr_ui_priority_primary" value="Create Student" />  
-    </div> 
-      </form>
+             <div class="cjr_fieldset_legend">Data From Envelope</div>
+             <hr />
+             <div>
+                 <label class="cjr_form_label" >Envelope Number</label> 
+                 <input type="text" name="EnvelopeNumber"  />
+             </div> 
+             <div>
+                 <label class="cjr_form_label" >Amount From Envelope $</label> 
+                 <input type="text" name="AmountFromEnvelope" id="AmountFromEnvelope" />
+             </div> 
+             <div>
+                 <label class="cjr_form_label">Reading Goal</label>
+                 <input type="text" name="ReadingGoal" id="ReadingGoal" />
+             </div>
+             <div>
+                 <label class="cjr_form_label">Minutes Read</label>
+                 <input type="text" name="MinutesRead" id="MinutesRead" />
+             </div>
+             <div>
+                 <label class="cjr_form_label">Pages Read</label>
+                 <input type="text" name="PagesRead"  id="PagesRead" />
+             </div> 
+             <div>
+                 @Html.HiddenFor(x => x.SchoolId) 
+                 <input type="hidden" value="0" name="AmountFromWebSite" />   
+                 <input type="hidden"    name="ShirtSize" id="hdnShirtSize" />  
+             </div>
+             <div>
+                 <label class="cjr_form_label">Shirt Size</label>   
+                 <div class="cjr_module_important"> 
+                     <select  id="selShirtSize">
+                         <option value = ""></option>                    
+                         <option  Value="@ShirtSize.YouthSmall">@ShirtSize.YouthSmall</option>
+                         <option  Value="@ShirtSize.YouthMedium">@ShirtSize.YouthMedium</option>
+                         <option  Value="@ShirtSize.YouthLarge">@ShirtSize.YouthLarge</option>
+                         <option  Value="@ShirtSize.YouthXl">@ShirtSize.YouthXl</option>
+                         <option  Value="@ShirtSize.AdultSmall">@ShirtSize.AdultSmall</option>
+                         <option  Value="@ShirtSize.AdultMedium">@ShirtSize.AdultMedium</option>
+                         <option  Value="@ShirtSize.AdultLarge">@ShirtSize.AdultLarge</option>
+                         <option  Value="@ShirtSize.AdultXl">@ShirtSize.AdultXl</option>  
+                     </select></div> </div>
+             <div>
+                 <label class="cjr_form_label">Comments</label><br />
+                 <textarea cols="30" rows="3" name="Comments"></textarea>
+             </div>           
+         </div><hr /> 
+         <div class="cjr_toolbar">
+             <input type="submit" class="cjr_button cjr_ui_priority_primary" value="Create Student" />  
+         </div> </div>
+ }
       
       
       @section FooterScripts{

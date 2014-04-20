@@ -1,0 +1,66 @@
+﻿@using CJR.Common.Extensions
+@using ReadAThonEntryMvc.Models
+@model Contact
+
+@{
+    ViewBag.Title = "Edit Contact";
+    Layout = "~/Views/Layouts/cjrNancyLayout.cshtml";
+}
+ 
+ @using (Html.BeginForm("Edit", "Contact"))
+ {
+     <div class="cjr_toolbar"> <b>
+                                   @Html.ActionLink("Back to School", "BackToSchool", new { Id = Model.SchoolId })
+                               </b></div>
+     <div class="cjr_form">
+         <div class="cjr_fieldset_legend">Edit Contact</div><br />
+      
+         <label class="cjr_form_label" >First Name</label> 
+        @Html.TextBoxFor(x => x.FirstName)
+         <label class="cjr_form_label" >Last Name</label> 
+         @Html.TextBoxFor(x => x.LastName)
+         <label class="cjr_form_label" >Title</label> 
+         <select id = "ddTitle">
+             @foreach(var c in Contact.GetTitles()) 
+                    { 
+                        <option value="@c.Value" @Model.GetSelectedTitle(@c.Text)>@c.Text</option>
+                    } 
+         </select> 
+         @Html.HiddenFor(x => x.Id)
+         @Html.HiddenFor(x => x.ShirtSize,new {id = "selShirtSize"})
+         @Html.HiddenFor(x => x.School) 
+         @Html.HiddenFor(x => x.Title, new { id="hdnTitleName" })
+                 <label class="cjr_form_label">Shirt Size</label><br />
+        <div class="cjr_module_important">
+                       
+         <select  id="selShirtSize">
+          <option value = "@ShirtSize.None"></option>                    
+          <option  Value="@ShirtSize.YouthSmall" @Model.GetSelectedSize(@ShirtSize.YouthSmall)>@ShirtSize.YouthSmall</option>
+          <option  Value="@ShirtSize.YouthMedium" @Model.GetSelectedSize(@ShirtSize.YouthMedium)>@ShirtSize.YouthMedium</option>
+          <option  Value="@ShirtSize.YouthLarge" @Model.GetSelectedSize(@ShirtSize.YouthLarge)>@ShirtSize.YouthLarge</option>
+          <option  Value="@ShirtSize.YouthXl" @Model.GetSelectedSize(@ShirtSize.YouthXl)>@ShirtSize.YouthXl</option>
+          <option  Value="@ShirtSize.AdultSmall" @Model.GetSelectedSize(@ShirtSize.AdultSmall)>@ShirtSize.AdultSmall</option>
+          <option  Value="@ShirtSize.AdultMedium" @Model.GetSelectedSize(@ShirtSize.AdultMedium)>@ShirtSize.AdultMedium</option>
+          <option  Value="@ShirtSize.AdultLarge" @Model.GetSelectedSize(@ShirtSize.AdultLarge)>@ShirtSize.AdultLarge</option>
+          <option  Value="@ShirtSize.AdultXl" @Model.GetSelectedSize(@ShirtSize.AdultXl)>@ShirtSize.AdultXl</option>  
+        </select>
+        </div>
+     </div><hr />                <div class="cjr_toolbar">
+      <input type="submit" class="cjr_button cjr_ui_priority_primary" value="Save Changes" />  
+   </div>
+ }     
+ 
+       @section FooterScripts{
+    <script type="text/javascript">
+        $("#selShirtSize").change(function () {
+            var size = $("#selShirtSize").val();
+            $("#hdnShirtSize").val(size);
+
+        });
+        $("#ddTitle").change(function () {
+            var titleId = $("#ddTitle").val();
+            var title = $("#ddTitle").text();
+            $("#hdnTitleName").val(title); 
+
+        });
+          </script>

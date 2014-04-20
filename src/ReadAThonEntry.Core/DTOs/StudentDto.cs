@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace ReadAThonEntry.Core.DTOs
 {
     using FluentNHibernate.Data;
@@ -6,10 +8,10 @@ namespace ReadAThonEntry.Core.DTOs
     {  
         public virtual string EnvelopeNumber { get; set; }
         public virtual string Grade { get; set; }
-        public virtual string Teacher { get; set; }
+        public virtual long TeacherId { get; set; } 
         public virtual string FirstName { get; set; }
-        public virtual string LastName { get; set; }
-        public virtual string School { get; set; } 
+        public virtual string LastName { get; set; } 
+        public virtual string SchoolName { get; set; }
         public virtual int MinutesRead { get; set; }
         public virtual int PagesRead { get; set; }
         public virtual int ReadingGoal { get; set; }
@@ -24,12 +26,11 @@ namespace ReadAThonEntry.Core.DTOs
         public virtual string State { get; set; }
         public virtual string Zip { get; set; }
         public virtual string Phone { get; set; }
-
+        public virtual IList<PrizeDto> Prizes { get; set; }  
         public virtual int YearOf
         {
             get; set;
         }
-
 
 //        public decimal GetTotalAmount()
 //        {

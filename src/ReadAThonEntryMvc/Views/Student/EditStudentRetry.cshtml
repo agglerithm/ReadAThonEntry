@@ -1,4 +1,4 @@
-﻿@model StudentPrototype
+﻿@model Student
 
 @using ReadAThonEntryMvc.Models
 @{
@@ -18,14 +18,14 @@
       <div class="cjr_fieldset_legend">Student Information</div><br />
   <div class="cjr_important"><br />
   <ul>
-              <li class="last"><B>School:</B> @Model.School  </li>
-              <li class="last"><b>Teacher:</b> @Model.Teacher</li>
+              <li class="last"><B>School:</B> @Model.SchoolName  </li>
+              <li class="last"><b>Teacher:</b> @Model.TeacherName</li>
               <li class="last"><b>Student Name:</b> @Model.FirstName @Model.LastName</li>
               <li class="last"><B>Grade:</B> @Model.Grade</li>
               <li class="last"><B>Online Amount:</B> @Model.AmountFromWebsite</li>
          </ul>   </div> 
-<input type="hidden" value="@Model.School" name="School" />
-<input type="hidden" value="@Model.Teacher" name="Teacher" />
+<input type="hidden" value="@Model.SchoolName" name="SchoolId" />
+<input type="hidden" value="@Model.TeacherId" name="Teacher" />
 <input type="hidden" value="@Model.FirstName" name="FirstName" />
 <input type="hidden" value="@Model.LastName" name="LastName" />
 <input type="hidden" value="@Model.Grade" name="Grade" />

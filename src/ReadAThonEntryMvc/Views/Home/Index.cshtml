@@ -8,12 +8,21 @@
 }
 @using (Html.BeginForm("lookup","Home",FormMethod.Post))
 {
-  <div class="cjr_form"> 
+  <div class="cjr_form">       <div class="span-18 vspan 2">            <table><tr> 
+                       <td>
+                          <h3> <a href="School">Schools</a></h3>
+                       </td>
+                       <td>
+                           <h3>  <a href="Prize">Prizes</a></h3>
+                       </td>
+                   </tr></table>
+          </div> 
+        <hr />
       <table>
           
           <tr> <td><label>School</label></td>
-              <td> @Html.DropDownListFor(m => m.SelectedSchool, 
-              new SelectList(Model.EnrolledList,"SchoolId","School","<Select a school>")) 
+              <td> @Html.DropDownListFor(m => m.SelectedSchoolId, 
+              new SelectList(Model.EnrolledList,"SchoolId","SchoolName","<Select a school>")) 
                 </td>
               <td> 
               </td></tr>

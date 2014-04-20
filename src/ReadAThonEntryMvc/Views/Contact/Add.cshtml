@@ -1,0 +1,45 @@
+﻿@using ReadAThonEntryMvc.Models
+@model ReadAThonEntryMvc.Models.School
+
+@{
+    ViewBag.Title = "Add Contact to " + Model.Name;
+    Layout = "~/Views/Layouts/cjrNancyLayout.cshtml";
+}
+
+
+ @using (Html.BeginForm("Add", "Contact"))
+ {
+     <div class="cjr_toolbar"> <b> @Html.ActionLink("Back to School", "BackToSchool", routeValues: new { Id = Model.Id})
+    </b>
+         </div> 
+     <div class="cjr_form">
+         <div class="cjr_fieldset_legend">Add Contact to @Model.Name</div><br />
+      
+         <label class="cjr_form_label" >First Name</label> 
+         <input type="text" id="FirstName" name="FirstName"/>
+         <label class="cjr_form_label" >Last Name</label> 
+         <input type="text" id="LastName" name="LastName"/>
+         <label class="cjr_form_label" >Title</label>   
+         @Html.DropDownList("ddTitle", @Contact.GetTitles(),new {id="ddTitle"}) 
+         <input type="hidden" name="TitleId" id="hdnTitleId"/>
+         <input type="hidden" name="Title" id="hdnTitle"/>
+         @Html.HiddenFor(x => x.Id)
+         <input type="hidden"     name="ShirtSize" id="hdnShirtSize" />  
+     </div>
+     <hr />
+     <div class="cjr_toolbar">
+         <input type="submit" class="cjr_button cjr_ui_priority_primary" value="Save Changes" />  
+     </div>
+ }
+ 
+       @section FooterScripts{
+    <script type="text/javascript">
+        $("#ddTitle").change(function () {
+            var titleId = $("#ddTitle").val();
+            var title = $("#ddTitle").text();
+            $("#hdnTitle").val(title);
+            $("#hdnTitleId").val(titleId);
+
+        });
+ 
+          </script>

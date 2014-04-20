@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
-using CJR.Persistence; 
+using CJR.Persistence;
+using Microsoft.Practices.ServiceLocation;
 
 namespace ReadAThonEntryMvc.Modules
 {
@@ -36,7 +37,14 @@ namespace ReadAThonEntryMvc.Modules
 
         private void Application_BeginRequest(object sender, EventArgs e)
         {
-            DbSession  = DependencyResolver.Current.GetService<ISessionWrapper>();
+//            HttpApplication application = (HttpApplication)sender;
+//            HttpContext context = application.Context;
+// 
+//                context.Response.Write("<h1><font color=red>" +
+//                    "HelloWorldModule: Beginning of Request" +
+//                    "</font></h1><hr>"); 
+ 
+            DbSession  = ServiceLocator.Current.GetInstance<ISessionWrapper>();
             DbSession.BindToCurrentContext(); 
         }
 

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using PullReadAThonData.Data;
+using ReadAThonEntry.Core;
 
 namespace PullReadAThonData
 {
@@ -32,10 +34,10 @@ namespace PullReadAThonData
             var students = getStudents(response.ResponseText);
 
             Console.WriteLine(" Saving to the database...");
-
-            var repo = ServiceLocator.Current.GetInstance<IStudentRepository>();
+             
+            var downloadRepo = ServiceLocator.Current.GetInstance<IStudentDownloadRepository>();
             var errorRepo = ServiceLocator.Current.GetInstance<IStudentErrorRepository>();
-            persistStudents(students, repo, errorRepo);
+            persistStudents(students, downloadRepo, errorRepo);
             Console.WriteLine("Done!");
             Console.WriteLine("Press space bar to exit program.");
             Console.ReadKey();
@@ -43,29 +45,13 @@ namespace PullReadAThonData
 
         }
 
-        private static void persistStudents(IEnumerable<StudentDto> students, IStudentRepository repo, IStudentErrorRepository errorRepo)
+        
+        private static void persistStudents(IEnumerable<StudentPackage> students, 
+            IStudentDownloadRepository downloadRepo, IStudentErrorRepository errorRepo)
         {
             try
             {
-            students.Where(st => st.School != "INDIVIDUAL").ForEach(s =>
-                                                                        {
-                                                                            try
-                                                                            {
-                                                                                s.YearOf = DateTime.Today.Year;
-                                                                                repo.Save(s);
-                                                                            }
-                                                                            catch (Exception ex)
-                                                                            {
-                                                                                errorRepo.Save(new StudentErrorDto(s, ex));
-                                                                            }
-                                                                        });
-            students.Where(st => st.School == "INDIVIDUAL").ForEach(s =>
-                                                                        {
-                                                                            s.YearOf = DateTime.Today.Year;
-                                                                            errorRepo.Save(new StudentErrorDto(s, new Exception("No such school")));
-                                                                        }
-                );
-
+                students.ForEach(s => saveStudent(s, downloadRepo, errorRepo)); 
             }
             catch (Exception ex)
             {
@@ -73,7 +59,22 @@ namespace PullReadAThonData
             }
         }
 
-        private static IEnumerable<StudentDto> getStudents(string responseText)
+        private static void saveStudent(StudentPackage stPkg, IStudentDownloadRepository repo,
+                                        IStudentErrorRepository errorRepo)
+        {
+            try
+            {
+                repo.Save(stPkg);
+            }
+
+            catch (Exception  ex)
+                    { 
+                        errorRepo.Save(stPkg, ex);
+                    } 
+   
+        }
+     
+        private static IEnumerable<StudentPackage> getStudents(string responseText)
         {
             var parser = ServiceLocator.Current.GetInstance<IStudentReportParser>();
 

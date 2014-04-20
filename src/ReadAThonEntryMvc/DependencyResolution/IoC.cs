@@ -1,13 +1,12 @@
 using System.Configuration;
 using System.Web.Mvc;
 using CJR.Persistence;
-using CJR.Persistence.configs;
-using NHibernate;
-using NHibernate.Context;
-using ReadAThonEntry.Configs;
+using CJR.Persistence.configs; 
+using NHibernate.Context; 
 using ReadAThonEntry.Core.Configs;
 using ReadAThonEntry.Core.DTOs;
 using StructureMap;
+
 namespace ReadAThonEntryMvc {
     public static class IoC {
         public static IContainer Initialize()
@@ -15,6 +14,7 @@ namespace ReadAThonEntryMvc {
         
             var reg = new CjrPersistenceRegistry<StudentDto, WebSessionContext>(
                 ConfigurationManager.AppSettings["TestMode"] != "0", false, "ReadAThonEntry.Core");
+ 
             ObjectFactory.Initialize(x =>
                         {
                             x.Scan(scan =>

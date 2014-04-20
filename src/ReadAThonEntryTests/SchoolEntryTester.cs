@@ -1,15 +1,17 @@
 ﻿
 
+using CJR.Common;
+using ReadAThonEntryMvc.Models;
+using ReadAThonEntryMvc.Services;
+using ReadAThonEntryTests.configs;
+
 namespace ReadAThonEntryTests
 {
     using Microsoft.Practices.ServiceLocation;
-    using NUnit.Framework;
-    using ReadAThonEntry.Configs;
+    using NUnit.Framework; 
     using ReadAThonEntry.Core.Repositories;
-    using ReadAThonEntry.Modules;
-    using ReadAThonEntry.Services;
-    using ReadAThonEntry.ViewModels;
     using Cjr.Common.Testing;
+
     [TestFixture]
     public class SchoolEntryTester
     {
@@ -17,7 +19,6 @@ namespace ReadAThonEntryTests
         [TestFixtureSetUp]
         public void SetUpForAllTests()
         {
-            StructureMapBootstrapper.Execute();
             _sut = ServiceLocator.Current.GetInstance<IStudentProcessingService>();
         }
         [SetUp]
@@ -27,28 +28,37 @@ namespace ReadAThonEntryTests
         }
 
         [Test]
-        public void should_enter_school_if_school_unknown()
+        public void should_enter_student()
         {
+            var helper = ServiceLocator.Current.GetInstance<IStudentMappingHelper>();
+
+            var studentRepo = ServiceLocator.Current.GetInstance<IStudentRepository>();
+            var studentDto = studentRepo.Find(s => s.LastName == "Cobb");
+            if (studentDto != null)
+                studentRepo.Delete(studentDto);
             var student = new StudentPrototype()
                               {
                                   FirstName = "Bob",
                                   LastName = "Cobb",
-                                  School = "Transylvania High",
-                                  CreateNewSchool = true,
+                                  SchoolName = "Transylvania High" ,
+                                  SchoolId = 1,
+                                  CreateNewSchool = false,
                                   AmountFromEnvelope = "23.33",
                                   AmountFromWebsite = "0",
-                                  Teacher = "Mr. Teach",
+                                  FundraisingGoal = "0",
+                                  Teacher =  25,
                                   MinutesRead = "33",
                                   PagesRead = "44",
                                   ReadingGoal = "100",
                                   EnvelopeNumber = "343"
                               };
+            
+            helper.LoadPrototype(student);
+            _sut.ValidateAndInsert(student, helper);
 
-            _sut.ValidateAndInsert(student);
-            var schoolRepo = ServiceLocator.Current.GetInstance<ISchoolRepository>();
-            var school = schoolRepo.Find(s => s.Name == "Transylvania High");
-
-            school.ShouldNotBeNull();
+            studentDto.ShouldNotBeNull();
+            studentDto.TeacherId.ShouldEqual(0);
+            studentDto.SchoolName.ShouldBeNull();
 
         }
 

@@ -16,7 +16,7 @@ namespace ReadAThonEntryTests
         [TestFixtureSetUp]
         public void SetUpForAllTests()
         {
-            _sut = new StudentReportParser();
+            _sut = new StudentReportParser(null);
         }
 
 

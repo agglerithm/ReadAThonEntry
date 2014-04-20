@@ -1,3 +1,4 @@
+using CJR.Common.Extensions;
 using CJR.Persistence;
 using NHibernate.Linq;
 
@@ -26,11 +27,21 @@ namespace ReadAThonEntry.Core.Repositories
 
         public StudentDto Find(Expression<Func<StudentDto, bool>> where)
         {
-            return Query(where).FirstOrDefault();
+            var student = Query(where).FirstOrDefault();
+            if (student == null) return null;
+            student.SchoolName =   student.SchoolName;
+            student.Prizes =
+                _session.Query<PrizeDto>()
+                        .Where(p => p.MinAmount <  student.AmountFromEnvelope
+                            +  student.AmountFromWebsite).ToList();
+            student.TeacherId =   student.TeacherId;
+            return student;
         }
+ 
 
         public void Save(StudentDto student)
         {
+            _session.Flush();
             _session.Save(student);
             _session.Flush();
         }
@@ -38,6 +49,11 @@ namespace ReadAThonEntry.Core.Repositories
         public void WithinUpdateContext(Action action)
         {
             _session.WithinUpdateContext(action); 
+        }
+
+        public void Delete(StudentDto studentDto)
+        {
+            _session.Delete(studentDto);
         }
     }
 } 

@@ -1,3 +1,4 @@
+using System;
 using System.Text; 
 using ReadAThonEntry.Core.DTOs;
 using ReadAThonEntry.Core.Repositories; 
@@ -8,31 +9,42 @@ namespace ReadAThonEntryMvc.Services
 {
     public interface IStudentProcessingService    
     {
-        bool ValidateAndInsert(StudentPrototype requestPrototype);
-        bool ValidateAndUpdate(StudentPrototype requestPrototype);
+        bool ValidateAndInsert(StudentPrototype requestPrototype, IStudentMappingHelper helper);
+        bool ValidateAndUpdate(Student requestPrototype, IStudentMappingHelper helper);
     }
 
     public class StudentProcessingService : IStudentProcessingService
     {
         private readonly IStudentRepository _studentRepo;
-        private readonly ISchoolRepository _schoolRepo;
 
-        public StudentProcessingService(IStudentRepository studentRepo, ISchoolRepository schoolRepo)
+        public StudentProcessingService(IStudentRepository studentRepo)
         {
-            _studentRepo = studentRepo;
-            _schoolRepo = schoolRepo;
+            _studentRepo = studentRepo; 
         }
 
-        public bool ValidateAndSave(StudentPrototype request)
+//        public bool ValidateAndSave(StudentPrototype request)
+//        {
+//            if (!validate(request))
+//                return false;
+//            var teacher = getContactDto(request);
+//            _studentRepo.Save(request.MapFromPrototype(teacher));
+//            if (request.CreateNewSchool)
+//            {
+//                _schoolRepo.Save(new SchoolDto() { Name = request.School.Name });
+//            }
+//            return true;
+//        }
+
+        private static bool validate(Student request)
         {
-            if (!validate(request))
-                return false;
-            _studentRepo.Save(request.MapFromPrototype());
-            if (request.CreateNewSchool)
-            {
-                _schoolRepo.Save(new SchoolDto() { Name = request.School });
-            }
-            return true;
+            request.ValidationErrorMsgs = "";
+            var valMsgs = new StringBuilder(); 
+            if (request.EnvelopeNumber.IsNullOrEmpty())
+                valMsgs.AppendLine("Envelope Number is required!"); 
+            if (valMsgs.Length == 0)
+                return true;
+            request.ValidationErrorMsgs = valMsgs.ToString();
+            return false;
         }
 
         private static bool validate(StudentPrototype request)
@@ -58,28 +70,30 @@ namespace ReadAThonEntryMvc.Services
             return false;
         }
 
-        public bool ValidateAndInsert(StudentPrototype request)
-        {
+        public bool ValidateAndInsert(StudentPrototype request, IStudentMappingHelper helper)
+        { 
             if (!validate(request))
                 return false;
-            _studentRepo.Save(request.MapFromPrototype());
-            if (request.CreateNewSchool)
-            {
-                _schoolRepo.Save(new SchoolDto() { Name = request.School });
-            }
+            var dto = _studentRepo.Find(s => s.FirstName == request.FirstName 
+                && s.LastName == request.LastName
+                && s.SchoolName == request.SchoolName);
+            if(dto != null)
+                throw new Exception(string.Format("Student {0} {1} is already in the database.", request.FirstName, request.LastName));
+            _studentRepo.Save(request.MapFromPrototype(helper));
             return true;
         }
 
-        public bool ValidateAndUpdate(StudentPrototype request)
-        {
+
+
+        public bool ValidateAndUpdate(Student request, IStudentMappingHelper helper)
+        { 
             if (!validate(request))
-                return false;
+                return false; 
             _studentRepo.WithinUpdateContext(() =>
                 {
-                    var entity = _studentRepo.Find(e => e.FirstName == request.FirstName
-                                                        && e.LastName == request.LastName
-                                                        && e.Address1 == request.Address1);
-                    request.MergeWithPrototype(entity);
+                    var entity = _studentRepo.Find(e => e.Id == request.Id);
+                    helper.LoadPrototype(request);
+                    request.MergeWithModel(entity,helper); 
                 });
             return true;
         }

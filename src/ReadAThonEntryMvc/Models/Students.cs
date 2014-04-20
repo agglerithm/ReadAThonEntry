@@ -21,7 +21,7 @@ namespace ReadAThonEntryMvc.Models
             get;
             set;
         }
-        public string School
+        public School School
         {
             get; private set;
         }

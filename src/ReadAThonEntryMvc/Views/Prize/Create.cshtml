@@ -1,0 +1,23 @@
+﻿@model ReadAThonEntryMvc.Models.Prize
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Layouts/cjrNancyLayout.cshtml";
+}
+
+<h2>Create Prize</h2>
+ @using (Html.BeginForm("Edit", "Prize"))
+ {
+     <div class="cjr_form">
+         <div class="cjr_fieldset_legend">Create Prize</div><br />
+      
+         <label class="cjr_form_label" >Prize Description</label> 
+        @Html.TextBoxFor(x => x.Description);
+         <label class="cjr_form_label" >Minimum Value</label> 
+         @Html.TextBoxFor(x => x.MinAmount);
+         <label class="cjr_form_label" >Maximum Value</label> 
+         @Html.TextBoxFor(x => x.MaxAmount);
+     </div><hr />                <div class="cjr_toolbar">
+      <input type="submit" class="cjr_button cjr_ui_priority_primary" value="Save Changes" />  
+   </div>
+ }     

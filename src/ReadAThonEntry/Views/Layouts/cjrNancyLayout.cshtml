@@ -1,5 +1,4 @@
-﻿@using Budgeting.Helpers 
-<!doctype html>
+﻿<!doctype html>
 
 <html>
   <head>
@@ -12,12 +11,12 @@
     <link rel="shortcut icon" href="/favicon.ico">
 
     <link rel="apple-touch-icon" href="/Contents/Images/apple-touch-icon.png"> 
-    <link href="/Contents/Css/cjr_default.css" rel="stylesheet" type="text/css" media="screen, projection"/>
-    <link href="/Contents/Css/blueprint_screen.css" rel="stylesheet" type="text/css" media="screen, projection"/>
-    <link href="/Contents/Css/blueprint_print.css" rel="stylesheet" type="text/css" media="print" />
-    <link href="/Contents/Css/cjr_default_print.css" rel="stylesheet" type="text/css" media="print" />
-    <link href="/Contents/Css/style.css" rel="stylesheet" type="text/css" media="screen, projection" /> 
-    <link href="/Contents/Css/jquery-ui-1_8_2.css" rel="stylesheet" type="text/css" media="screen, projection" />  
+    <link href="~/Contents/Css/cjr_default.css" rel="stylesheet" type="text/css" media="screen, projection"/>
+    <link href="~/Contents/Css/blueprint_screen.css" rel="stylesheet" type="text/css" media="screen, projection"/>
+    <link href="~/Contents/Css/blueprint_print.css" rel="stylesheet" type="text/css" media="print" />
+    <link href="~/Contents/Css/cjr_default_print.css" rel="stylesheet" type="text/css" media="print" />
+    <link href="~/Contents/Css/style.css" rel="stylesheet" type="text/css" media="screen, projection" /> 
+    <link href="~/Contents/Css/jquery-ui-1_8_2.css" rel="stylesheet" type="text/css" media="screen, projection" />  
   
  
     <!-- All JavaScript at the bottom, except for Modernizr and Respond.
@@ -36,8 +35,19 @@
       <div id="subheader"> 
         <h1>Read-A-Thon Entries</h1> 
       </div> 
-      <div class="span-24 vspan 2">&nbsp;</div> 
-             
+        <div class="span-24 vspan 2">
+            <table><tr>
+                       <td>
+                           <a href="~/Home">Home</a>
+                       </td>
+                       <td>
+                           <a href="~/School">Schools</a>
+                       </td>
+                       <td>
+                           <a href="~/Prize">Prizes</a>
+                       </td>
+                   </tr></table>
+        </div>  
       <div class="span-18 last">
         @RenderBody()
       </div>    
@@ -52,11 +62,11 @@
 
     <script type="text/javascript" src="/Scripts/jquery-1.8.2.min.js"> </script>
     
-    <script type="text/javascript" src="/Scripts/plugins.js"> </script>
-    <script type="text/javascript" src="/Scripts/script.js"> </script> 
-    <script type="text/javascript" src="/Scripts/jquery-ui-1.9.0.min.js"> </script> 
-    <script type="text/javascript" src="/Scripts/jquery-ui-timepicker-addon.js"> </script> 
-    <script type="text/javascript" src="/Scripts/jquery-ui-sliderAccess.js"> </script> 
+    <script type="text/javascript" src="~/Scripts/plugins.js"> </script>
+    <script type="text/javascript" src="~/Scripts/script.js"> </script> 
+    <script type="text/javascript" src="~/Scripts/jquery-ui-1.9.0.min.js"> </script> 
+    <script type="text/javascript" src="~/Scripts/jquery-ui-timepicker-addon.js"> </script> 
+    <script type="text/javascript" src="~/Scripts/jquery-ui-sliderAccess.js"> </script> 
     <!-- ADDED: Page Level script sections -->
     @RenderSection("FooterScripts", false)
  

@@ -11,14 +11,14 @@
 @using(Html.BeginForm("CreateStudent","Student"))
 { 
   <div class="cjr_form"> 
-  <h3>The following students matched the search criteria for @Model.School:</h3>
+  <h3>The following students matched the search criteria for @Model.School.Name:</h3>
  <hr /> 
  <ul>
 @foreach (var student in @Model.StudentList)
 {
     <li>@Html.ActionLink(@student.LastName + "," + @student.FirstName,"EditStudent", "Student",
     new { lastname=student.LastName, firstname = student.FirstName, 
-        school = student.School},null)
+        school = student.SchoolName},null)
     <br /></li>
 }
 </ul>

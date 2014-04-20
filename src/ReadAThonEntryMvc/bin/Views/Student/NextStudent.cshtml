@@ -16,8 +16,8 @@
         <table> 
             <tr> <td><label>School</label></td>
                 <td>  
-                    @Html.DropDownListFor(m => m.SelectedSchool,
-                                          new SelectList(Model.EnrolledList, "SchoolId", "School", "<Select a school>"))
+                    @Html.DropDownListFor(m => m.SelectedSchoolId, 
+              new SelectList(Model.EnrolledList,"SchoolId","SchoolName","<Select a school>")) 
                 </td>
                 <td><input type="hidden" name="School" id="txtSchool" />
                 </td></tr>

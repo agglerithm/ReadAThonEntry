@@ -1,0 +1,19 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Prizes";
+    Layout = "~/Views/Layouts/cjrNancyLayout.cshtml";
+}
+ 
+
+@{
+    var grid = new WebGrid(Model);
+}
+
+@grid.GetHtml(alternatingRowStyle: "cjr_module_secondary", columns: grid.Columns(
+    grid.Column("Description", "Description"),
+    grid.Column("MinAmount","MinAmount"),
+    grid.Column("MaxAmount","MaxAmount"),
+        grid.Column(format: @<text>@Html.ActionLink("Edit",
+
+            "Edit", "Prize", new { id = item.Id }, null)</text>)))

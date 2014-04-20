@@ -4,9 +4,9 @@ namespace ReadAThonEntryMvc.Models
     {
         public string LastName { get; set; }
         public string FirstName { get; set; }
-        public string School { get; set; }
+        public School School { get; set; }
         public bool SchoolDoesNotExist { get; set; }
-
-        public long SchoolId { get; set; }
+        public string SchoolName { get { return School.Name; } }
+        public long SchoolId { get { return School.Id; } }
     }
 }

@@ -3,7 +3,7 @@ namespace ReadAThonEntry.Core.Repositories
     using System;
     using System.Collections.Generic;
     using System.Linq.Expressions;
-    using ReadAThonEntry.Core.DTOs;
+    using DTOs;
 
     public interface IStudentRepository
     {
@@ -14,5 +14,6 @@ namespace ReadAThonEntry.Core.Repositories
         void Save(StudentDto student);
          
         void WithinUpdateContext(Action action);
+        void Delete(StudentDto studentDto);
     }
 }

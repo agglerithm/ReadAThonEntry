@@ -12,11 +12,11 @@ namespace CJR.Persistence
  
     }
 
-    public class CjrSqlSessionSource<T> : SessionSource
+    public class CjrSqlSessionSource<T,TSessionContext> : SessionSource where TSessionContext : ICurrentSessionContext
     {
         public CjrSqlSessionSource(string connectionKey, bool createNewTables)
             : base(FluentNHibernateConfigurationBuilder
-                       .GetFluentNHibernateConfiguration<T>(connectionKey, createNewTables))
+                       .GetFluentNHibernateConfiguration<T,TSessionContext>(connectionKey, createNewTables))
         {
             
         }

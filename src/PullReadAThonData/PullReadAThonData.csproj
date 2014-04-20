@@ -38,21 +38,18 @@
     <Reference Include="CJR.Common">
       <HintPath>..\..\lib\CJR.Common.dll</HintPath>
     </Reference>
-    <Reference Include="CJR.Persistence">
-      <HintPath>..\..\lib\CJR.Persistence.dll</HintPath>
-    </Reference>
     <Reference Include="FluentNHibernate">
-      <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
+      <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections">
-      <HintPath>..\packages\Iesi.Collections.3.3.2.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="LinFu.DynamicProxy">
       <HintPath>..\..\lib\LinFu.DynamicProxy.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.9.0, Culture=neutral, PublicKeyToken=b32731d11ce58905">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+      <HintPath>..\packages\log4net.2.0.2\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -61,7 +58,7 @@
       <HintPath>..\..\lib\NCommon\NCommon.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
-      <HintPath>..\packages\NHibernate.3.3.2.4000\lib\Net35\NHibernate.dll</HintPath>
+      <HintPath>..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate.ByteCode.LinFu">
       <HintPath>..\..\lib\NHibernate.ByteCode.LinFu.dll</HintPath>
@@ -83,6 +80,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configs\StructureMapRegistry.cs" />
+    <Compile Include="Data\IStudentErrorRepository.cs" />
+    <Compile Include="Data\StudentDownloadRepository.cs" />
+    <Compile Include="Data\StudentErrorDto.cs" />
+    <Compile Include="Data\StudentErrorMapper.cs" />
+    <Compile Include="Data\StudentErrorRepository.cs" />
     <Compile Include="IStudentReportParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,11 +100,16 @@
       <Project>{3A1A7741-6A57-4D98-A808-73688D127B7B}</Project>
       <Name>CjrHttp</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CJR.Persistence\CJR.Persistence.csproj">
+      <Project>{4A33FC62-E10F-4576-8CC6-16CFEF4D5DBE}</Project>
+      <Name>CJR.Persistence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ReadAThonEntry.Core\ReadAThonEntry.Core.csproj">
       <Project>{3DD71B27-F362-4746-9D0F-19D8FF691C33}</Project>
       <Name>ReadAThonEntry.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ReadAThonEntryMvc.Models.School>
+
+@{
+    ViewBag.Title = "Schools";
+    Layout = "~/Views/Layouts/cjrNancyLayout.cshtml";
+}
+
+<h2>Schools</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="cjr_form"> 
+        @{
+            var grid = new WebGrid(Model, canPage: false);
+        }
+        @grid.GetHtml(alternatingRowStyle: "cjr_module_secondary", columns: grid.Columns(
+            grid.Column(null, style: "update", format:
+                                                   @<text>
+                                                        @Html.ActionLink("Edit",
+                                                                         "Edit", "School", new
+                                                                             {
+                                                                                 Id = item.Id,
+                                                                                 Name = item.Name
+                                                                             }, null)
+                                                    </text>), 
+            grid.Column("Name", "Name", style: "style")
+                          ))
+    </div>
+}

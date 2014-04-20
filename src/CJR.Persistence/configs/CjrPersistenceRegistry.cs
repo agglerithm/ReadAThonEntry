@@ -1,4 +1,5 @@
 
+using System.Configuration;
 using NHibernate.Context;
 
 namespace CJR.Persistence.configs
@@ -11,14 +12,14 @@ namespace CJR.Persistence.configs
     }
     public class CjrPersistenceRegistry<T,TSessionContext> : Registry where TSessionContext : ICurrentSessionContext
     {
-        public CjrPersistenceRegistry(bool testMode, bool rebuildSchema, string assembly) 
+        public CjrPersistenceRegistry(bool testMode, bool rebuildSchema, string assembly)
         {
-
-            var connectionKey = testMode == false ? "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=bin\\entries.mdb" : "entriesTest.mdb";
+            var connectionString = ConfigurationManager.ConnectionStrings["entriesConnectionString"].ToString();
+            //var connectionKey = testMode == false ? "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\entries.mdb" : "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\entries.mdb;";
             var createnewTables = testMode && rebuildSchema;
 
-            For<ISessionSource>().Singleton().Use<CjrSessionSource<T,TSessionContext>>()
-              .Ctor<string>("connectionKey").Is(connectionKey) 
+            For<ISessionSource>().Singleton().Use<CjrSessionSource<T, TSessionContext>>()
+              .Ctor<string>("connectionKey").Is(connectionString) 
               .Ctor<bool>("createnewTables").Is(createnewTables);
 
             Scan(x =>

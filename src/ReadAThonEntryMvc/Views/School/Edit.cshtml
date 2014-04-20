@@ -1,0 +1,40 @@
+﻿@model ReadAThonEntryMvc.Models.School
+
+@{
+    ViewBag.Title = "Edit School";
+    Layout = "~/Views/Layouts/cjrNancyLayout.cshtml";
+}
+
+ 
+ @using (Html.BeginForm("Edit", "School"))
+ {
+     <div class="cjr_toolbar"> <b>
+         @Html.ActionLink("Back to Schools", "Index", "School")</b>
+         </div> 
+     <div class="cjr_form">
+         <div class="cjr_fieldset_legend">Edit School</div><br />
+      
+         <label class="cjr_form_label" >School Name</label> 
+         @Html.TextBoxFor(x => x.Name)  <br />
+         
+         <label class="cjr_form_label" >Address</label> 
+         @Html.TextBoxFor(x => x.Address1)  <br />
+         <label class="cjr_form_label" >City</label> 
+         @Html.TextBoxFor(x => x.City)  <br />
+         <label class="cjr_form_label" >State</label> 
+         @Html.TextBoxFor(x => x.State)  <br />
+         <label class="cjr_form_label" >Zip Code</label> 
+         @Html.TextBoxFor(x => x.Zip)  <br />
+         <label class="cjr_form_label" >Number of Classrooms</label> 
+         @Html.TextBoxFor(x => x.NumberOfClassrooms)  <br />
+         
+         
+         <b>
+         <a href="../../Contact?Id=@Model.Id">View Contacts</a>
+         <p />
+         <a href="../../Contact/Add?Id=@Model.Id">New Contact</a></b>
+         @Html.HiddenFor(x => x.Id) 
+     </div><hr />                <div class="cjr_toolbar">
+      <input type="submit" class="cjr_button cjr_ui_priority_primary" value="Save Changes" />  
+   </div>
+ }     

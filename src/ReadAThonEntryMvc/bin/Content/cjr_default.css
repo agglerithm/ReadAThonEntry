@@ -42,7 +42,7 @@ a {color:#5B752C;text-decoration:underline;}
 
 /* Header
 ----------------------------------*/
-#header {width: 950px; height: 125px; background: #FFF url(/Contents/Css/images/header.jpg) no-repeat}
+#header {width: 950px; height: 125px; background: #FFF url(/Content/images/header.jpg) no-repeat}
 #subheader {width: 950px; height: 30px; background: #FFF url(/Contents/Css/images/header_title.gif) }
 #subheader h1{font-size: 18px; font-weight: bolder; color: #3D5E1A; padding: 5px 0 0 5px;}
 

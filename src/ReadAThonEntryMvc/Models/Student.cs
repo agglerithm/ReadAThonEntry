@@ -7,13 +7,15 @@ using ReadAThonEntry.Core.Repositories;
 namespace ReadAThonEntryMvc.Models
 {
     public class Student
-    {   
+    {
+        public long Id { get; set; }
         public string EnvelopeNumber { get; set; }
         public  string Grade { get; set; }
-        public  string Teacher { get; set; }
+        public long TeacherId { get; set; }
+        public string TeacherName { get; set; }
         public  string FirstName { get; set; }
-        public  string LastName { get; set; }
-        public string School { get; set; }
+        public  string LastName { get; set; } 
+        public string SchoolName { get; set; }
         public  int MinutesRead { get; set; }
         public int PagesRead { get; set; }
         public int ReadingGoal { get; set; }
@@ -35,8 +37,12 @@ namespace ReadAThonEntryMvc.Models
             return size == ShirtSize ? "selected" : ""  ;
         }
 
-        public bool CreateNewSchool
-        { get; set; }
+        public string GetSelectedTeacher(int teacherId)
+        {
+            return TeacherId == teacherId ? "selected" : "";
+        }
+
+        public IEnumerable<Prize> Prizes { get; set; }
 
         public static IEnumerable<string> GetAll()
         {

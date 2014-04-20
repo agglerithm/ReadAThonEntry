@@ -1,11 +1,11 @@
 using NHibernate.Context;
+using ReadAThonEntry.Core.Configs;
 using ReadAThonEntry.Core.DTOs;
 
-namespace ReadAThonEntry.Configs
+namespace ReadAThonEntryMvc
 {
     using System.Configuration;
-    using CJR.Persistence.configs;
-    using Core.Configs;
+    using CJR.Persistence.configs; 
     using StructureMap;
     using StructureMap.Configuration.DSL;
 

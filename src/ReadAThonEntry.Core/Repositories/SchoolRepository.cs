@@ -1,4 +1,5 @@
-using System.Linq;
+using System.Linq; 
+using CJR.Common.Extensions;
 using CJR.Persistence;
 using NHibernate.Linq;
 
@@ -28,16 +29,31 @@ namespace ReadAThonEntry.Core.Repositories
             return _session.Query<SchoolDto>().Where(where);
         }
 
-        public SchoolDto Find(Expression<Func<SchoolDto, bool>> where)
+        public SchoolDto Find(Predicate< SchoolDto> where)
         {
-            return _session.Query<SchoolDto>().FirstOrDefault<SchoolDto>(where);
+            return GetAll().Find(where);
         }
 
         public void Save(SchoolDto school)
         {
             _session.Save(school);
         }
-    }
 
+        public void Delete(long id)
+        {
+            _session.Delete(Find(s => s.Id == id));
+        }
 
+        public void Expel(SchoolDto school)
+        {
+            _session.Evict(school);
+        }
+
+        public void AddContact(SchoolDto school, ContactDto contactDto)
+        {
+            contactDto.Id =  (long) _session.Save(contactDto);
+            school.Contacts.Add(contactDto);
+            _session.Flush();
+        }
+    } 
 }

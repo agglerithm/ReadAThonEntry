@@ -1,0 +1,25 @@
+﻿@model  ReadAThonEntryMvc.Models.School
+
+@{
+    ViewBag.Title = "Contacts for " + Model.Name;
+    Layout = "~/Views/Layouts/cjrNancyLayout.cshtml";
+}
+
+<h2>Contacts for @Model.Name</h2>
+ @Html.ActionLink("Back to School","BackToSchool",new { Id = Model.Id}) 
+        @{
+            var grid = new WebGrid(Model.Contacts.OrderBy(k => k.LastName), canPage: false);
+        }
+        @grid.GetHtml(alternatingRowStyle: "cjr_module_secondary", columns: grid.Columns(
+        grid.Column("FirstName", "First Name", style: "style"),
+        grid.Column("LastName", "Last Name", style: "style") ,
+            grid.Column("Title", "Title", style: "style"),
+                          grid.Column(null, style: "update", format:
+                                                   @<text>
+                                                        @Html.ActionLink("Edit",
+                                                                         "Edit", "Contact", new
+                                                                             {
+                                                                                 contactId = item.Id,
+                                                                                 schoolName = Model.Name
+                                                                             }, null)
+                                                    </text>))) 
